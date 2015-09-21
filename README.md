@@ -3,7 +3,7 @@ Offers an easier way of designing, creating and controlling badges within your A
 
 ![provided by designers from corp 21cn](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/badgesample.png)
 
-*provided by designers from corp 21cn*
+*provided by designers from corp 21CN*
 
 ## Usage
 *There are two types of Badge: `FigureBadge` and `DotBadge`. `FigureBadge` has just the same usage as `DotBadge`. Additionally, it has more features. So the following routine aims at `FigureBadge` and `FigureStyleNormal` as an example.*
