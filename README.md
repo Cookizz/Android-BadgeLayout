@@ -6,7 +6,7 @@ Offers an easier way of designing, creating and controlling badges within your A
 *provided by designers from corp 21cn*
 
 ## Usage
-*For a simple implementation of this project see the `badgedemo/` folder.*
+*There are two types of Badge: `FigureBadge` and `DotBadge`. `FigureBadge` has just the same usage as `DotBadge`. Additionally, it has more features. So the following routine aims at `FigureBadge` and `FigureStyleNormal` as an example.*
 
   1. Include `BadgeRelativeLayout` in your view. Generally, it should be a container of those target views who you intend to put badges on.
   
