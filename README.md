@@ -129,3 +129,6 @@ Offers an easier way to design, create and control badges within your Android ap
             // relative to specified figure value.
         }
     
+## Developed By
+
+  * Cookizz - <com.cookizz@gmail.com>
