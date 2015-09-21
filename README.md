@@ -6,9 +6,8 @@ Offers an easier way of designing, creating and controlling badges within your A
 *(picture above is provided by designers from corp 21CN)*
 
 ## Usage
-There are two types of Badge: `FigureBadge` and `DotBadge`. `FigureBadge` has not only just the same usage as `DotBadge` but more exclusives. So the following routine aims at `FigureBadge` and its default style `FigureStyleNormal` as an example.
 
-  1. Include `BadgeRelativeLayout` in your view. Generally, it should be a container of those target views who you intend to put badges on.
+  1. Include `BadgeRelativeLayout` in your view. Put 2 TextViews into it.
   
   (no ListView/ScrollView should be inside the container, they may be supported later on)
   
@@ -17,24 +16,41 @@ There are two types of Badge: `FigureBadge` and `DotBadge`. `FigureBadge` has no
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             
-            <Button
-                android:id="@+id/badge_target"
-                android:text="@string/click_me"
+            <TextView
+                android:id="@+id/text_1"
+                android:text="@string/dot"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:background="@color/trans_black"/>
 
+            <TextView
+                android:id="@+id/text_2"
+                android:text="@string/figure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/text_1"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:background="@color/trans_black"/>
+                
         </com.cookizz.badgelib.BadgeRelativeLayout>
 
-  2. In your `onCreate()` method, create a badge attached on `@id/badge_target`.
+  2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` using their default  styles.
 
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-        FigureBadge badge = manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
         
-        // control your badge object(not a View) independent from View hierarchy
-        badge.show();
-        badge.setFigure(45);
+        // create a dot badge on @id/text_1
+        DotBadge dot = manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
+        dot.show();
         
-  ![code effect](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/addbadgeon.png)
+        // create a figure badge on @id/text_2 and set a figure
+        FigureBadge figure = manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
+        figure.show();
+        figure.setFigure(45);
+        
+  ![code effect](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/dotandfigure.png)
     
   3. Once you obtained a badge reference and called its `show()` method, the following control accesses are now available for you.
         
@@ -51,6 +67,8 @@ There are two types of Badge: `FigureBadge` and `DotBadge`. `FigureBadge` has no
         int getFigure();
 
 ## Design your badge style
+  
+  
   
   1. Create a subclass of `FigureStyleTemplate` and implement your design.
   
