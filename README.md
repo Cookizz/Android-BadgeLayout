@@ -40,6 +40,7 @@ Offers an easier way of designing, creating and controlling badges within your A
         badge.setFigure(45);
     
   3. Once you obtained a badge reference and called its `show()` method, the following control accesses are now available for you.
+        
         /**
          * As the signature goes.
          */
