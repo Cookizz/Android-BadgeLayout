@@ -35,7 +35,7 @@ Offers an easier way to design, create and control badges within your apps. You 
         
         // Detach a badge from its target view, then the badge reference are disabled forever.
         void badge.detach();
-        // Detect whether your badge is still attaching.
+        // Detect whether your badge is still available.
         boolean badge.isAttached();
         
         // A badge typed "Figure" has an access to set its figure.
