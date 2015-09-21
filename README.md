@@ -42,7 +42,7 @@ Offers an easier way to design, create and control badges within your Android ap
         boolean badge.isAttached();
         
         // A badge typed "Figure" has an access to set its figure.
-        void badge.setFigure(45);
+        void badge.setFigure(100);
         int badge.getFigure();
         
         // Get the style info of your badge.
