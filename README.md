@@ -58,85 +58,68 @@ Offers an easier way to design, create and control badges within your Android ap
   
   1. Create a subclass of `FigureStyleTemplate`.
   
-        public class MyFigureStyle extends FigureStyleTemplate {}
+        public class MyFigureStyle extends FigureStyleTemplate {...}
 
-  2. Implement methods that are used to define the styles.
+  2. Implement methods that are used to define the styles. *Reference `FigureStyleNormal` for a sample implementation*
 
         @Override
         public Point getReferencedScreenResolution() {
-            // you must point out which screen resolution your design is based on
-            // the x value indicates the width pixels of the screen, y, of course, the height
-            return new Point(750, 1334);
+            // You must point out which screen resolution your design is based on.
+            // The base class will automatically complete screen adaption in the runtime.
+            // `Point`'s x value indicates the width pixels of the screen, y, of course, the height.
         }
     
         @Override
         public Point getGravity() {
-            // 
-            return new Point(1, -1);
+            // Tell the base class which direction will your badge go when it's going to be attached on the target view.
+            // `Point`'s x value indicates the x direction, y, of course, the y direction.
+            // For instance, (1, -1) shows that it will be put adjacent to the right-top corner of the target view.
+            // (0, 0) shows that it will be put at the center.
         }
     
         @Override
         public Point getOffset() {
-            return new Point(10, -10);
+            // After the gravity has been set, you can set an extra offset the badge will go.
+            // `Point`'s x value indicates the x offset, y, of course, the y offset.
         }
         
         @Override
         public int getTextSize() {
-            //
-            return 24;
+            // Point out the size of figure text.
         }
     
         @Override
         public int getTextColor(Context context) {
-            return Color.rgb(255, 255, 255);
+            // Point out the color of figure text.
         }
     
         @Override
         public Typeface getTypeface(Context context) {
-            return null;
+            // Point out the typeface of figure text.
         }
     
         @Override
         public int getBackgroundColor(Context context) {
-            return Color.rgb(238, 37, 45);
+            // Point out the background of the badge's background.
         }
     
         @Override
         public int getTerminalRadius() {
-            return 18;
+            // Point out the terminal radius when the badge displays as a fully round rect.
         }
     
         @Override
         public int getWidth(int figure) {
-            if(figure < 0) {
-                return 0;
-            }
-            final int divideBy10 = figure / 10;
-            if(divideBy10 == 0) {
-                return 36;
-            }
-            else if(divideBy10 < 10) {
-                return 48;
-            }
-            else {
-                return 62;
-            }
+            // Point out the width relative to specified figure value.
         }
     
         @Override
         public String getText(int figure) {
-            String text;
-            if(figure > 99) {
-                text = "99+";
-            }
-            else {
-                text = String.valueOf(figure);
-            }
-            return text;
+            // Point out the intrinsic text relative to specified figure value.
         }
     
         @Override
         public boolean isVisible(int figure) {
-            return figure > 0;
+            // Point out in which case the badge should be visible, relative to specified figure value.
         }
     
