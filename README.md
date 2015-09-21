@@ -50,7 +50,7 @@ Offers an easier way of designing, creating and controlling badges within your A
         void setFigure(int);
         int getFigure();
 
-## Design your badge
+## Design your badge style
   
   1. Create a subclass of `FigureStyleTemplate` and implement your design.
   
