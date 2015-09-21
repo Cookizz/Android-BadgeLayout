@@ -31,9 +31,8 @@ Offers an easier way to design, create and control badges within your Android ap
         badge.show();
         badge.setFigure(45);
     
-  3. Once you got your badge reference and called `show()` method, the following methods are now available for you.
+  3. Once you got your badge reference and called its `show()` method, the following methods are now available for you.
 
-        void badge.show();
         void badge.hide();
         boolean isShown();
         
