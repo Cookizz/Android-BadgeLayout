@@ -58,7 +58,7 @@ Offers an easier way to design, create and control badges within your Android ap
 
 ## Design your badge
   
-  1. create a subclass of `FigureStyleTemplate` or `DotStyleTemplate` and put your design into it.
+  1. Create a subclass of `FigureStyleTemplate` or `DotStyleTemplate` and put your design into it.
   
         public class MyFigureStyle extends FigureStyleTemplate {
         
