@@ -140,11 +140,11 @@ Offers an easier way of designing, creating and controlling badges within your A
 
 ## Limitations
 
-  * If you intend to put a badge on a list item or into a ScrollView, do not wrap the list or the ScrollView into BadgeRelativeLayout. Contrarily, put BadgeRelativeLayout into their View tree.
-
   * Only RelativeLayout can be replaced by now, FrameLayout is coming soon.
   * Not supporting "any-text" badge so far, coming soon.
   * No touching event available on the badge, coming soon.
+  
+  * If you intend to put a badge on a list item or into a ScrollView, do not wrap the list or the ScrollView into BadgeRelativeLayout. Contrarily, put BadgeRelativeLayout into their View tree.
 
 ## Developed By
 
