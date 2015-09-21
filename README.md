@@ -1,5 +1,5 @@
 # Android-BadgeLayout
-Offers an easier way to design, create and control badges within your Android apps. You pay no attention to any `View` issues during your development.
+Offers an easier way of designing, creating and controlling badges within your Android apps. You pay no attention to any View issues during your development.
 
 ![provided by designers from corp 21cn](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/badgesample.png)
 
