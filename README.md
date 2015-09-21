@@ -63,19 +63,22 @@ Offers an easier way to design, create and control badges within your Android ap
   2. Implement methods that are used to define the styles.
 
   *Reference `FigureStyleNormal` for a sample implementation*
-
+    
         @Override
         public Point getReferencedScreenResolution() {
             // You must point out which screen resolution your design is based on.
             // The base class will automatically complete screen adaption in the runtime.
-            // `Point`'s x value indicates the width pixels of the screen, y, of course, the height.
+            // `Point`'s x value indicates the width pixels of the screen,
+            // y, of course, the height.
         }
     
         @Override
         public Point getGravity() {
-            // Tell the base class which direction will your badge go when it's going to be attached on the target view.
+            // Tell the base class which direction your badge goes
+            // when it's going to be attached on the target view.
             // `Point`'s x value indicates the x direction, y, of course, the y direction.
-            // For instance, (1, -1) shows that it will be put adjacent to the right-top corner of the target view.
+            // For instance, (1, -1) shows that it will be put adjacent
+            // to the right-top corner of the target view.
             // (0, 0) shows that it will be put at the center.
         }
     
@@ -122,6 +125,7 @@ Offers an easier way to design, create and control badges within your Android ap
     
         @Override
         public boolean isVisible(int figure) {
-            // Point out in which case the badge should be visible, relative to specified figure value.
+            // Point out in which case the badge should be visible
+            // relative to specified figure value.
         }
     
