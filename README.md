@@ -27,47 +27,26 @@ Offers an easier way of designing, creating and controlling badges within your A
 
   2. In your `onCreate()` method, create a badge attached on `@id/badge_target`.
 
-        /**
-         * Create a normal figure badge attached on your target.
-         * FigureStyleNormal is a built-in figure badge style.
-         * You can customize your own style by creating a subclass of FigureStyleTemplate.
-         */
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         FigureBadge badge = manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
         
-        // control your badge independent from `View` hierarchy
+        // control your badge independent from View hierarchy
         badge.show();
         badge.setFigure(45);
     
   3. Once you obtained a badge reference and called its `show()` method, the following control accesses are now available for you.
         
-        /**
-         * As the signature goes.
-         */
         void hide();
         boolean isShown();
-        
-        /**
-         * Detach a badge from its target view,
-         * then the badge reference are disabled forever.
-         */
         void detach();
-        
-        /**
-         * Detect whether your badge is still available.
-         */
         boolean isAttached();
-        
+        BadgeStyle getStyle();
+
         /**
-         * A badge typed "Figure" has an access to set its figure.
+         * FigureBadge exclusive methods
          */
         void setFigure(int);
         int getFigure();
-        
-        /**
-         * Get the style info of your badge.
-         */
-        BadgeStyle getStyle();
 
 ## Design your badge
   
