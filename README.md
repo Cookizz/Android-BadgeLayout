@@ -1,12 +1,16 @@
 # Android-BadgeLayout
-Offers an easier way to design, create and control badges within your Android apps. You pay no attention to any `View` issues during your development.
+Offers an easier way of designing, creating and controlling badges within your Android apps. You pay no attention to any View issues during your development.
+
+![provided by designers from corp 21cn](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/badgesample.png)
+
+*provided by designers from corp 21cn*
 
 ## Usage
-*For a simple implementation of this project see the `badgedemo/` folder.*
+*There are two types of Badge: `FigureBadge` and `DotBadge`. `FigureBadge` has just the same usage as `DotBadge`. Additionally, it has more features. So the following routine aims at `FigureBadge` and `FigureStyleNormal` as an example.*
 
   1. Include `BadgeRelativeLayout` in your view. Generally, it should be a container of those target views who you intend to put badges on.
   
-  (no ListView/ScrollView inside the container, they'll be supported later on)
+  (no ListView/ScrollView should be inside the container, they may be supported later on)
   
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
@@ -23,117 +27,131 @@ Offers an easier way to design, create and control badges within your Android ap
 
   2. In your `onCreate()` method, create a badge attached on `@id/badge_target`.
 
-        // create a normal figure badge attached on your target
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-        FigureBadge badge = 
-                manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
+        FigureBadge badge = manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
         
-        // control your badge independent from `View` hierarchy
+        // control your badge independent from View hierarchy
         badge.show();
         badge.setFigure(45);
     
   3. Once you obtained a badge reference and called its `show()` method, the following control accesses are now available for you.
-
-        void badge.hide();
+        
+        void hide();
         boolean isShown();
-        
-        // Detach a badge from its target view, then the badge reference are disabled forever.
-        void badge.detach();
-        // Detect whether your badge is still available.
-        boolean badge.isAttached();
-        
-        // A badge typed "Figure" has an access to set its figure.
-        void badge.setFigure(100);
-        int badge.getFigure();
-        
-        // Get the style info of your badge.
+        void detach();
+        boolean isAttached();
         BadgeStyle getStyle();
 
-## Design
-  
-  As the example above, we used the built-in `FigureStyleNormal` to define a "Figure" badge style. You may design a custom style as you want.
-  
-  1. Create a subclass of `FigureStyleTemplate`.
-  
-        public class MyFigureStyle extends FigureStyleTemplate {}
+        /**
+         * FigureBadge exclusive methods
+         */
+        void setFigure(int);
+        int getFigure();
 
-  2. Implement methods that are used to define the styles.
-
-        @Override
-        public Point getReferencedScreenResolution() {
-            // you must point out which screen resolution your design is based on
-            // the x value indicates the width pixels of the screen, y, of course, the height
-            return new Point(750, 1334);
-        }
-    
-        @Override
-        public Point getGravity() {
-            // 
-            return new Point(1, -1);
-        }
-    
-        @Override
-        public Point getOffset() {
-            return new Point(10, -10);
-        }
+## Design your badge
+  
+  1. Create a subclass of `FigureStyleTemplate` and implement your design.
+  
+        public class MyFigureStyle extends FigureStyleTemplate {
         
-        @Override
-        public int getTextSize() {
-            //
-            return 24;
+            /** 
+             * You must point out which screen resolution your design is based on.
+             * The base class will automatically complete screen adaption in the runtime.
+             * Point's x value indicates the width pixels of the screen,
+             * y, of course, the height.
+             */
+            @Override
+            public Point getReferencedScreenResolution() { // your design }
+        
+            /**
+             * Tell the base class which direction your badge goes
+             * when it's going to be attached on the target view.
+             * Point's x value indicates the x direction, y, of course, the y direction.
+             * For instance, (1, -1) shows that it will be put adjacent
+             * to the right-top corner of the target view.
+             * (0, 0) shows that it will be put at the center.
+             */
+            @Override
+            public Point getGravity() { // your design }
+        
+            /**
+             * After the gravity has been set, you can set an extra offset the badge will go.
+             * Point's x value indicates the x offset, y, of course, the y offset.
+             */
+            @Override
+            public Point getOffset() { // your design }
+            
+            /**
+             * Point out the size of figure text.
+             */
+            @Override
+            public int getTextSize() { // your design }
+        
+            /**
+             * Point out the color of figure text.
+             */
+            @Override
+            public int getTextColor(Context context) { // your design }
+        
+            /**
+             * Point out the typeface of figure text.
+             */
+            @Override
+            public Typeface getTypeface(Context context) { // your design }
+        
+            /**
+             * Point out the background of the badge's background.
+             */
+            @Override
+            public int getBackgroundColor(Context context) { // your design }
+        
+            /**
+             * Point out the terminal radius when the badge displays as a fully round rect.
+             */
+            @Override
+            public int getTerminalRadius() { // your design }
+        
+            /**
+             * Point out the width relative to specified figure value.
+             */
+            @Override
+            public int getWidth(int figure) { // your design }
+        
+            /**
+             * Point out the intrinsic text relative to specified figure value.
+             */
+            @Override
+            public String getText(int figure) { // your design }
+        
+            /**
+             * Point out in which case the badge should be visible
+             * relative to specified figure value.
+             */
+            @Override
+            public boolean isVisible(int figure) { // your design }
         }
     
-        @Override
-        public int getTextColor(Context context) {
-            return Color.rgb(255, 255, 255);
-        }
-    
-        @Override
-        public Typeface getTypeface(Context context) {
-            return null;
-        }
-    
-        @Override
-        public int getBackgroundColor(Context context) {
-            return Color.rgb(238, 37, 45);
-        }
-    
-        @Override
-        public int getTerminalRadius() {
-            return 18;
-        }
-    
-        @Override
-        public int getWidth(int figure) {
-            if(figure < 0) {
-                return 0;
-            }
-            final int divideBy10 = figure / 10;
-            if(divideBy10 == 0) {
-                return 36;
-            }
-            else if(divideBy10 < 10) {
-                return 48;
-            }
-            else {
-                return 62;
-            }
-        }
-    
-        @Override
-        public String getText(int figure) {
-            String text;
-            if(figure > 99) {
-                text = "99+";
-            }
-            else {
-                text = String.valueOf(figure);
-            }
-            return text;
-        }
-    
-        @Override
-        public boolean isVisible(int figure) {
-            return figure > 0;
-        }
-    
+  2. Put your design into use.
+
+        BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
+        FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.class);
+
+## Developed By
+
+  * Cookizz - <com.cookizz@gmail.com>
+
+## License
+
+    Copyright 2015 Cookizz
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
