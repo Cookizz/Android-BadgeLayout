@@ -9,7 +9,7 @@ Offers an easier way of designing, creating and controlling badges within your A
 
   1. Include `BadgeRelativeLayout` in your view. Put 2 Views into it. 
 
-  In no matter which view hierarchy inside `BdadeRelativeLayout` will be ok except for ScrollView and ListView, which may be supported later on.
+  In no matter what view hierarchy inside `BdadeRelativeLayout` will it be OK for they two to put except ScrollView and ListView, which may be supported later on.
 
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
