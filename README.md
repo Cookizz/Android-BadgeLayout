@@ -58,79 +58,85 @@ Offers an easier way to design, create and control badges within your Android ap
 
 ## Design your badge
   
-  1. Create a subclass of `FigureStyleTemplate` or `DotStyleTemplate` and put your design into it.
+  1. Create a subclass of `FigureStyleTemplate` and implement your design.
   
         public class MyFigureStyle extends FigureStyleTemplate {
         
+            /** 
+             * You must point out which screen resolution your design is based on.
+             * The base class will automatically complete screen adaption in the runtime.
+             * Point's x value indicates the width pixels of the screen,
+             * y, of course, the height.
+             */
             @Override
-            public Point getReferencedScreenResolution() {
-                /** 
-                 * You must point out which screen resolution your design is based on.
-                 * The base class will automatically complete screen adaption in the runtime.
-                 * Point's x value indicates the width pixels of the screen,
-                 * y, of course, the height.
-                 */
-            }
+            public Point getReferencedScreenResolution() { // your design }
         
+            /**
+             * Tell the base class which direction your badge goes
+             * when it's going to be attached on the target view.
+             * Point's x value indicates the x direction, y, of course, the y direction.
+             * For instance, (1, -1) shows that it will be put adjacent
+             * to the right-top corner of the target view.
+             * (0, 0) shows that it will be put at the center.
+             */
             @Override
-            public Point getGravity() {
-                /**
-                 * Tell the base class which direction your badge goes
-                 * when it's going to be attached on the target view.
-                 * Point's x value indicates the x direction, y, of course, the y direction.
-                 * For instance, (1, -1) shows that it will be put adjacent
-                 * to the right-top corner of the target view.
-                 * (0, 0) shows that it will be put at the center.
-                 */
-            }
+            public Point getGravity() { // your design }
         
+            /**
+             * After the gravity has been set, you can set an extra offset the badge will go.
+             * Point's x value indicates the x offset, y, of course, the y offset.
+             */
             @Override
-            public Point getOffset() {
-                /** After the gravity has been set, you can set an extra offset the badge will go.
-                 * Point's x value indicates the x offset, y, of course, the y offset.
-                 */
-            }
+            public Point getOffset() { // your design }
             
+            /**
+             * Point out the size of figure text.
+             */
             @Override
-            public int getTextSize() {
-                // Point out the size of figure text.
-            }
+            public int getTextSize() { // your design }
         
+            /**
+             * Point out the color of figure text.
+             */
             @Override
-            public int getTextColor(Context context) {
-                // Point out the color of figure text.
-            }
+            public int getTextColor(Context context) { // your design }
         
+            /**
+             * Point out the typeface of figure text.
+             */
             @Override
-            public Typeface getTypeface(Context context) {
-                // Point out the typeface of figure text.
-            }
+            public Typeface getTypeface(Context context) { // your design }
         
+            /**
+             * Point out the background of the badge's background.
+             */
             @Override
-            public int getBackgroundColor(Context context) {
-                // Point out the background of the badge's background.
-            }
+            public int getBackgroundColor(Context context) { // your design }
         
+            /**
+             * Point out the terminal radius when the badge displays as a fully round rect.
+             */
             @Override
-            public int getTerminalRadius() {
-                // Point out the terminal radius when the badge displays as a fully round rect.
-            }
+            public int getTerminalRadius() { // your design }
         
+            /**
+             * Point out the width relative to specified figure value.
+             */
             @Override
-            public int getWidth(int figure) {
-                // Point out the width relative to specified figure value.
-            }
+            public int getWidth(int figure) { // your design }
         
+            /**
+             * Point out the intrinsic text relative to specified figure value.
+             */
             @Override
-            public String getText(int figure) {
-                // Point out the intrinsic text relative to specified figure value.
-            }
+            public String getText(int figure) { // your design }
         
+            /**
+             * Point out in which case the badge should be visible
+             * relative to specified figure value.
+             */
             @Override
-            public boolean isVisible(int figure) {
-                // Point out in which case the badge should be visible
-                // relative to specified figure value.
-            }
+            public boolean isVisible(int figure) { // your design }
         }
     
   2. Put your design into use.
