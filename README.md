@@ -60,7 +60,9 @@ Offers an easier way to design, create and control badges within your Android ap
   
         public class MyFigureStyle extends FigureStyleTemplate {...}
 
-  2. Implement methods that are used to define the styles. *Reference `FigureStyleNormal` for a sample implementation*
+  2. Implement methods that are used to define the styles.
+
+  *Reference `FigureStyleNormal` for a sample implementation*
 
         @Override
         public Point getReferencedScreenResolution() {
