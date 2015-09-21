@@ -22,15 +22,19 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         final BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-        final FigureBadge badge = manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
-        badge.show();
-        badge.setFigure(45);
 
-        final View target = findViewById(R.id.badge_target);
+        final DotBadge dot = manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
+        dot.show();
+
+        final FigureBadge figure = manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
+        figure.show();
+        figure.setFigure(45);
+
+        final View target = findViewById(R.id.text_1);
         target.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                badge.setFigure((int) (Math.random() * 150));
+                figure.setFigure((int) (Math.random() * 150));
             }
         });
     }

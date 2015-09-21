@@ -2,5 +2,7 @@
     <string name="app_name">BadgeDemo</string>
 
     <string name="click_me">Click Me!</string>
+    <string name="dot">dot</string>
+    <string name="figure">figure</string>
     <string name="action_settings">Settings</string>
 </resources>
