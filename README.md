@@ -10,7 +10,8 @@ Offers an easier way of designing, creating and controlling badges within your A
   1. Include `BadgeRelativeLayout` in your view. Put 2 TextViews into it.
   
   (no ListView/ScrollView should be inside the container, they may be supported later on)
-  
+
+
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
             android:layout_width="match_parent"
@@ -39,6 +40,7 @@ Offers an easier way of designing, creating and controlling badges within your A
 
   2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` using their default  styles.
 
+
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         
         // create a dot badge on @id/text_1
@@ -49,11 +51,11 @@ Offers an easier way of designing, creating and controlling badges within your A
         FigureBadge figure = manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
         figure.show();
         figure.setFigure(45);
-        
+
   ![code effect](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/dotandfigure.png)
     
   3. Once you obtained a badge reference and called its `show()` method, the following control accesses are now available for you.
-        
+
         void hide();
         boolean isShown();
         void detach();
@@ -67,8 +69,6 @@ Offers an easier way of designing, creating and controlling badges within your A
         int getFigure();
 
 ## Design your badge style
-  
-  
   
   1. Create a subclass of `FigureStyleTemplate` and implement your design.
   
