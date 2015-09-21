@@ -10,7 +10,7 @@ Offers an easier way to design, create and control badges within your Android ap
 
   1. Include `BadgeRelativeLayout` in your view. Generally, it should be a container of those target views who you intend to put badges on.
   
-  (no ListView/ScrollView should be inside the container, they'll be supported later on)
+  (no ListView/ScrollView should be inside the container, they may be supported later on)
   
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
