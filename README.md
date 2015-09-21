@@ -7,7 +7,9 @@ Offers an easier way of designing, creating and controlling badges within your A
 
 ## Usage
 
-  1. Include `BadgeRelativeLayout` in your view. Put 2 TextViews into it.
+  1. Include `BadgeRelativeLayout` in your view. Put 2 Views into it. 
+
+  In no matter which view hierarchy inside `BdadeRelativeLayout` will be ok except for ScrollView and ListView, which may be supported later on.
   
   (no ListView/ScrollView should be inside the container, they may be supported later on)
 
