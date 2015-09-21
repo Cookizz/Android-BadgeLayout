@@ -56,9 +56,7 @@ Offers an easier way to design, create and control badges within your Android ap
         // Get the style info of your badge.
         BadgeStyle getStyle();
 
-## Customize
-  
-  To customize your style of badge is quite easy.
+## Design your badge
   
   1. create a subclass of `FigureStyleTemplate` or `DotStyleTemplate` and put your design into it.
   
