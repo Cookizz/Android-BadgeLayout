@@ -40,20 +40,32 @@ Offers an easier way of designing, creating and controlling badges within your A
         badge.setFigure(45);
     
   3. Once you obtained a badge reference and called its `show()` method, the following control accesses are now available for you.
-
-        void badge.hide();
+        /**
+         * As the signature goes.
+         */
+        void hide();
         boolean isShown();
         
-        // Detach a badge from its target view, then the badge reference are disabled forever.
-        void badge.detach();
-        // Detect whether your badge is still available.
-        boolean badge.isAttached();
+        /**
+         * Detach a badge from its target view,
+         * then the badge reference are disabled forever.
+         */
+        void detach();
         
-        // A badge typed "Figure" has an access to set its figure.
-        void badge.setFigure(int);
-        int badge.getFigure();
+        /**
+         * Detect whether your badge is still available.
+         */
+        boolean isAttached();
         
-        // Get the style info of your badge.
+        /**
+         * A badge typed "Figure" has an access to set its figure.
+         */
+        void setFigure(int);
+        int getFigure();
+        
+        /**
+         * Get the style info of your badge.
+         */
         BadgeStyle getStyle();
 
 ## Design your badge
