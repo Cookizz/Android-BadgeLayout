@@ -138,6 +138,13 @@ Offers an easier way of designing, creating and controlling badges within your A
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.class);
 
+## Limitations
+
+  * Only RelativeLayout can be replaced by now, FrameLayout is coming soon.
+  * If you intend to put a badge on a list item or into a ScrollView, do not wrap the list or the ScrollView into BadgeRelativeLayout. Contrarily, put BadgeRelativeLayout into their View tree.
+  * Not supporting "any-text" badge so far, coming soon.
+  * No touching event available on the badge, coming soon.
+
 ## Developed By
 
   * Cookizz - <com.cookizz@gmail.com>
