@@ -133,7 +133,7 @@ Offers an easier way to design, create and control badges within your Android ap
             }
         }
     
-  2. Use your `MyFigureStyle` in badge creation.
+  2. Put your design into badge creation.
 
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.class);
