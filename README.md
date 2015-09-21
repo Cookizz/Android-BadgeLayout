@@ -52,7 +52,7 @@ Offers an easier way to design, create and control badges within your Android ap
         // Get the style info of your badge.
         BadgeStyle getStyle();
 
-## Design
+## Theming
   
   As the example above, we used the built-in `FigureStyleNormal` to define a "Figure" badge style. You may design a custom style as you want.
   
