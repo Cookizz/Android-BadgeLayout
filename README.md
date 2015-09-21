@@ -23,8 +23,8 @@ Offers an easier way to design, create and control badges within your Android ap
 
   2. In your `onCreate()` method, create a badge attached on `@id/badge_target`.
 
-        final BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-        final FigureBadge badge = 
+        BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
+        FigureBadge badge = 
               manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
         badge.show();
         badge.setFigure(45);
