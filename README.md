@@ -30,7 +30,7 @@ Offers an easier way of designing, creating and controlling badges within your A
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         FigureBadge badge = manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
         
-        // control your badge independent from View hierarchy
+        // control your badge object(not a View) independent from View hierarchy
         badge.show();
         badge.setFigure(45);
         
