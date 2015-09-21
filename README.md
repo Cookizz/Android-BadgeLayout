@@ -1,5 +1,5 @@
 # Android-BadgeLayout
-Offers a new simple way to create and control badges on any of your "BadgeRelativeLayout"'s sub view. Offers design templates for you to customize any style of badges you want.
+Offers an easier way to create and control badges on your view tree. Offers templates for you to design any style of a badge in your way and just in seconds.
 
 # Usage
 *For a simple implementation of this project see the `badgedemo/` folder.*
