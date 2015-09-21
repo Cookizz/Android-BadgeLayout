@@ -29,8 +29,7 @@ Offers an easier way to design, create and control badges within your Android ap
 
         // create a normal figure badge attached on your target
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-        FigureBadge badge = 
-                manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
+        FigureBadge badge = manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
         
         // control your badge independent from `View` hierarchy
         badge.show();
