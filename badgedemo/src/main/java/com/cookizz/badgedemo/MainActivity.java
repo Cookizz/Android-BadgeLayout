@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.cookizz.badgelib.BadgeRelativeLayout;
 import com.cookizz.badgelib.DotBadge;
 import com.cookizz.badgelib.DotStyleNormal;
 import com.cookizz.badgelib.FigureBadge;
@@ -23,34 +21,16 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        final BadgeManager manager = (BadgeManager) findViewById(R.id.badge_manager);
-
-        // attach a normal figure badge to target1
+        final BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         final FigureBadge badge = manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
         badge.show();
-
-        // attach a normal dot badge to target2
-        final DotBadge badge2 = manager.createDotBadge(R.id.badge_target_2, DotStyleNormal.class);
-        badge2.show();
+        badge.setFigure(45);
 
         final View target = findViewById(R.id.badge_target);
         target.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 badge.setFigure((int) (Math.random() * 150));
-            }
-        });
-
-        final View target2 = findViewById(R.id.badge_target_2);
-        target2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Math.random() > 0.5) {
-                    badge2.show();
-                }
-                else {
-                    badge2.hide();
-                }
             }
         });
     }
