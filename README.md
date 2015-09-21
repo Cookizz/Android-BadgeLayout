@@ -22,7 +22,8 @@ Offers an easier way to design, create and control badges within your apps. You 
   2. In your `onCreate()` method, create a badge attached on `@id/badge_target`.
 
         final BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-        final FigureBadge badge = manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
+        final FigureBadge badge = 
+              manager.createFigureBadge(R.id.badge_target, FigureStyleNormal.class);
         badge.show();
         badge.setFigure(45);
     
@@ -31,8 +32,15 @@ Offers an easier way to design, create and control badges within your apps. You 
         void badge.show();
         void badge.hide();
         boolean isShown();
-        void badge.detach(); // Detach a badge from its target view, then the badge reference are disabled forever.
-        boolean badge.isAttached(); // Detect whether your badge is still attaching.
-        void badge.setFigure(45); // A badge typed "Figure" has an access to set its figure.
+        
+        // Detach a badge from its target view, then the badge reference are disabled forever.
+        void badge.detach();
+        // Detect whether your badge is still attaching.
+        boolean badge.isAttached();
+        
+        // A badge typed "Figure" has an access to set its figure.
+        void badge.setFigure(45);
         int badge.getFigure();
-        BadgeStyle getStyle(); // Get the style info of your badge.
+        
+        // Get the style info of your badge.
+        BadgeStyle getStyle();
