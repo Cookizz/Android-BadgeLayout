@@ -3,7 +3,7 @@ Offers an easier way of designing, creating and controlling badges within your A
 
 ## Usage
 
-  1. Include `BadgeRelativeLayout` in your view. Put 2 Views into it. 
+  1. Include `BadgeRelativeLayout` in your view. Put some `View`s into it. Here we put 2 `TextView`s.
 
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
