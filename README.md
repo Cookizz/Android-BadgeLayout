@@ -66,7 +66,7 @@ Offers an easier way of designing, creating and controlling badges within your A
         int getFigure();
 
 ## Design your badge style
-  Taking `FigureBadge` as an example...
+  Quite easy! Take `FigureBadge` as an example...
   
   1. Create a subclass of `FigureStyleTemplate` and implement your design.
   
