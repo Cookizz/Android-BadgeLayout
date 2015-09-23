@@ -47,6 +47,8 @@ Offers an easier way of designing, creating and controlling badges within your A
         figure.show();
         figure.setFigure(45);
 
+  Then here comes the result: 
+  
   ![code effect](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/dotandfigure.png)
     
   3. Once you obtained a badge reference and called its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
