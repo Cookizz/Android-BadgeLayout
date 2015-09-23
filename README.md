@@ -5,8 +5,6 @@ Offers an easier way of designing, creating and controlling badges within your A
 
   1. Include `BadgeRelativeLayout` in your view. Put 2 Views into it. 
 
-  In no matter what view hierarchy inside `BdadeRelativeLayout` will it be OK for they two to put except ScrollView and ListView, which may be supported later on.
-
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
             android:layout_width="match_parent"
@@ -32,6 +30,8 @@ Offers an easier way of designing, creating and controlling badges within your A
                 android:background="@color/trans_black"/>
                 
         </com.cookizz.badgelib.BadgeRelativeLayout>
+
+  In no matter what view hierarchy wrapped by `BdadeRelativeLayout` will it be OK for they two to put except ScrollView and ListView, which may be supported later on.
 
   2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` using their default  styles.
 
