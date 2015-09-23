@@ -3,7 +3,7 @@ Offers an easier way of designing, creating and controlling badges within your A
 
 ## Usage
 
-  1. Include `BadgeRelativeLayout` in your view. Put some `View`s into it. Here we put 2 `TextView`s.
+  1. Include `BadgeRelativeLayout` in your view (You are strongly recommended to make it as the root of your layout). Put some `View`s, which you intend to add badges on, into it. Here we put 2 `TextView`s.
 
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
@@ -31,10 +31,9 @@ Offers an easier way of designing, creating and controlling badges within your A
                 
         </com.cookizz.badgelib.BadgeRelativeLayout>
 
-  In no matter what view hierarchy wrapped by `BdadeRelativeLayout` will it be OK for they two to put except ScrollView and ListView, which may be supported later on.
+  In no matter what view hierarchy wrapped by `BdadeRelativeLayout` will it be OK for they two to put except ScrollView and ListView, which may be supported later on. Instead, you can include your `BadgeRelativeLayout` into ListView's item layout or inside the `ScrollView`'s layout for an equivalent effect.
 
-  2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` using their default  styles.
-
+  2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
 
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         
