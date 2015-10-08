@@ -1,16 +1,9 @@
 # Android-BadgeLayout
 Offers an easier way of designing, creating and controlling badges within your Android apps. You pay no attention to any View issues during your development.
 
-![provided by designers from corp 21cn](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/badgesample.png)
-
-*(picture above is provided by designers from corp 21CN)*
-
 ## Usage
 
-  1. Include `BadgeRelativeLayout` in your view. Put 2 TextViews into it.
-  
-  (no ListView/ScrollView should be inside the container, they may be supported later on)
-
+  1. Include `BadgeRelativeLayout` in your view (You are strongly recommended to make it as the root of your layout). Put some `View`s, which you intend to add badges on, into it. Here we put 2 `TextView`s.
 
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
@@ -38,8 +31,9 @@ Offers an easier way of designing, creating and controlling badges within your A
                 
         </com.cookizz.badgelib.BadgeRelativeLayout>
 
-  2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` using their default  styles.
+  In no matter what view hierarchy wrapped by `BdadeRelativeLayout` will it be OK for they two to put except ScrollView and ListView, which may be supported later on. Instead, you can include your `BadgeRelativeLayout` into ListView's item layout or inside the `ScrollView`'s layout for an equivalent effect.
 
+  2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
 
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         
@@ -52,9 +46,11 @@ Offers an easier way of designing, creating and controlling badges within your A
         figure.show();
         figure.setFigure(45);
 
+  Then here comes the result: 
+  
   ![code effect](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/dotandfigure.png)
     
-  3. Once you obtained a badge reference and called its `show()` method, the following control accesses are now available for you.
+  3. Once you obtained a badge reference and called its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
 
         void hide();
         boolean isShown();
@@ -69,6 +65,7 @@ Offers an easier way of designing, creating and controlling badges within your A
         int getFigure();
 
 ## Design your badge style
+  Quite easy! Take `FigureBadge` as an example...
   
   1. Create a subclass of `FigureStyleTemplate` and implement your design.
   
@@ -164,7 +161,7 @@ Offers an easier way of designing, creating and controlling badges within your A
   
   * No touching event available on the badge, coming soon.
   
-  * If you intend to put a badge on a list item or into a ScrollView, do not wrap the list or the ScrollView into BadgeRelativeLayout. Contrarily, put BadgeRelativeLayout into their View tree.
+  * If you intend to put a badge into a list item or into a ScrollView, do not wrap the list or the ScrollView into BadgeRelativeLayout. Contrarily, put BadgeRelativeLayout into their View tree.
 
 ## Developed By
 
