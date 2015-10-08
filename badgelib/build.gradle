@@ -22,3 +22,17 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.0.1'
 }
+
+/** make jar file */
+task clearJar(type: Delete) {
+    delete 'build/outputs/yourname.jar'
+}
+
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('build/outputs/')
+    include('classes.jar')
+    rename ('classes.jar', 'yourname.jar')
+}
+
+makeJar.dependsOn(clearJar, build)

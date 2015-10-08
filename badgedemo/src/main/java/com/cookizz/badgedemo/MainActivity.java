@@ -12,7 +12,6 @@ import com.cookizz.badgelib.FigureBadge;
 import com.cookizz.badgelib.FigureStyleNormal;
 import com.cookizz.badgelib.core.BadgeManager;
 
-
 public class MainActivity extends Activity {
 
     @Override
