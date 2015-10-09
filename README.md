@@ -154,8 +154,6 @@ BadgeLayout offers an easier way of designing, creating and controlling badges w
         FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.class);
 
 ## Limitations
-
-  * Only RelativeLayout can be replaced by now, FrameLayout is coming soon.
   
   * Not supporting "any-text" badge so far, coming soon.
   
