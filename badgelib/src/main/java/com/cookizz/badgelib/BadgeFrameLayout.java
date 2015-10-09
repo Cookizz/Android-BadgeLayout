@@ -7,7 +7,7 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 import com.cookizz.badgelib.core.BadgeManager;
 import com.cookizz.badgelib.core.BadgeObserver;
@@ -17,10 +17,10 @@ import com.cookizz.badgelib.core.style.AbsBadgeStyle;
 import com.cookizz.badgelib.core.style.BadgeStyleFactory;
 
 /**
- * 角标相对布局
- * Created by dugd on 2015/9/13.
+ * 角标帧布局
+ * Created by dugd on 2015/10/9.
  */
-public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager, BadgeObserver {
+public class BadgeFrameLayout extends FrameLayout implements BadgeManager, BadgeObserver {
 
     private BadgeStyleFactory mFactory;
     private ViewTreeObserver mObserver;
@@ -54,11 +54,11 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
     // 临时计算用矩形
     private final Rect mTempRect = new Rect();
 
-    public BadgeRelativeLayout(Context context) {
+    public BadgeFrameLayout(Context context) {
         this(context, null);
     }
 
-    public BadgeRelativeLayout(Context context, AttributeSet attrs) {
+    public BadgeFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mFactory = BadgeStyleFactory.getInstance(context);
