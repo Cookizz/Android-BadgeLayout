@@ -2,20 +2,19 @@ package com.cookizz.badgelib.core;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cookizz.badgelib.core.mutable.BadgeMutable;
 import com.cookizz.badgelib.core.style.BadgeStyle;
 
 /**
  * 角标绘图表面
  * Created by dugd on 2015/9/13.
  */
-public final class BadgeOverlay extends View {
+public final class BadgeOverlay extends View implements BadgeContainer {
 
     // 角标状态集合
     private final SparseArray<BadgeMutable> mMutables;
@@ -59,8 +58,15 @@ public final class BadgeOverlay extends View {
      * @param mutable
      */
     public void putMutable(int viewId, BadgeMutable mutable) {
-        if(mutable != null && mutable.isAttached()) {
-            mMutables.put(viewId, mutable);
+        if(mutable != null && mutable instanceof AbsBadgeMutable) {
+            AbsBadgeMutable absBadgeMutable = (AbsBadgeMutable) mutable;
+            if(absBadgeMutable.authenticateContainer(this)) {
+                BadgeMutable remaining = mMutables.get(viewId);
+                if(remaining != null) {
+                    remaining.detach(false);
+                }
+                mMutables.put(viewId, mutable);
+            }
         }
     }
 

@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import com.cookizz.badgelib.core.BadgeManager;
 import com.cookizz.badgelib.core.BadgeObserver;
 import com.cookizz.badgelib.core.BadgeOverlay;
-import com.cookizz.badgelib.core.mutable.BadgeMutable;
+import com.cookizz.badgelib.core.BadgeMutable;
 import com.cookizz.badgelib.core.style.AbsBadgeStyle;
 import com.cookizz.badgelib.core.style.BadgeStyleFactory;
 

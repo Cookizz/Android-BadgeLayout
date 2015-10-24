@@ -4,9 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.Log;
 
-import com.cookizz.badgelib.core.mutable.BadgeMutable;
+import com.cookizz.badgelib.core.BadgeMutable;
 import com.cookizz.badgelib.core.style.AbsBadgeStyle;
 
 /**

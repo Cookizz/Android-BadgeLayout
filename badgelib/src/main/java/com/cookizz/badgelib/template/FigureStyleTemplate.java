@@ -7,7 +7,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 
 import com.cookizz.badgelib.FigureBadge;
-import com.cookizz.badgelib.core.mutable.BadgeMutable;
+import com.cookizz.badgelib.core.BadgeMutable;
 import com.cookizz.badgelib.core.style.AbsBadgeStyle;
 
 /**

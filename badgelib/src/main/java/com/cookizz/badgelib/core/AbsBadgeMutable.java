@@ -1,6 +1,5 @@
-package com.cookizz.badgelib.core.mutable;
+package com.cookizz.badgelib.core;
 
-import com.cookizz.badgelib.core.BadgeObserver;
 import com.cookizz.badgelib.core.style.BadgeStyle;
 
 /**
@@ -11,13 +10,13 @@ public abstract class AbsBadgeMutable implements BadgeMutable {
 
     private boolean isAttached;
     private boolean isShown;
+    private boolean isDetached;
+    private BadgeStyle mStyle;
     private BadgeObserver mObserver;
-    private BadgeStyle style;
+    private BadgeContainer mContainer;
 
     public AbsBadgeMutable(BadgeStyle style) {
-        isShown = false;
-        isAttached = true;
-        this.style = style;
+        mStyle = style;
     }
 
     @Override
@@ -43,24 +42,25 @@ public abstract class AbsBadgeMutable implements BadgeMutable {
 
     @Override
     public BadgeStyle getStyle() {
-        return style;
+        return mStyle;
     }
 
     @Override
     public void detach() {
-        if(isAttached) {
-            isAttached = false;
-            notifyObserver();
-        }
+        detach(true);
     }
 
     @Override
     public void detach(boolean notifyObserver) {
         if(isAttached) {
-            isAttached = false;
             if(notifyObserver) {
                 notifyObserver();
             }
+            mStyle = null;
+            mObserver = null;
+            mContainer = null;
+            isAttached = false;
+            isDetached = true;
         }
     }
 
@@ -86,5 +86,19 @@ public abstract class AbsBadgeMutable implements BadgeMutable {
         if(mObserver != null) {
             mObserver.onBadgeStateChange();
         }
+    }
+
+    /**
+     * 认证Container
+     * @param container
+     * @return
+     */
+    final boolean authenticateContainer(BadgeContainer container) {
+        if(mContainer == null && !isDetached) {
+            mContainer = container;
+            isAttached = true;
+            return true;
+        }
+        return mContainer == container;
     }
 }

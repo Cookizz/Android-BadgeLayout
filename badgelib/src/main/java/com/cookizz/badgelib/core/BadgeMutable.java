@@ -1,4 +1,4 @@
-package com.cookizz.badgelib.core.mutable;
+package com.cookizz.badgelib.core;
 
 import com.cookizz.badgelib.core.BadgeObserver;
 import com.cookizz.badgelib.core.style.BadgeStyle;

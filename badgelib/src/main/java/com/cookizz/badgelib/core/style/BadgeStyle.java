@@ -3,7 +3,7 @@ package com.cookizz.badgelib.core.style;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.cookizz.badgelib.core.mutable.BadgeMutable;
+import com.cookizz.badgelib.core.BadgeMutable;
 
 /**
  * 角标样式接口

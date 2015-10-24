@@ -2,6 +2,7 @@ package com.cookizz.badgedemo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,28 +15,49 @@ import com.cookizz.badgelib.core.BadgeManager;
 
 public class MainActivity extends Activity {
 
+    private DotBadge dot;
+    private FigureBadge figure;
+    private BadgeManager manager;
+    private String tag = getClass().getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
-        final BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
+        manager = (BadgeManager) findViewById(R.id.badge_layout);
 
-        final DotBadge dot = manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
+        dot = manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
         dot.show();
-
-        final FigureBadge figure = manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
-        figure.show();
-        figure.setFigure(45);
 
         final View target = findViewById(R.id.text_1);
         target.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                figure.setFigure((int) (Math.random() * 150));
+                if(Math.random() > 0.5) {
+                    showDot();
+                }
+                else {
+                    showFigure((int) (Math.random() * 100));
+                }
             }
         });
+    }
+
+    private void showDot() {
+        if(dot == null || !dot.isAttached()) {
+            dot = manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
+        }
+        dot.show();
+    }
+
+    private void showFigure(int f) {
+        if(figure == null || !figure.isAttached()) {
+            figure = manager.createFigureBadge(R.id.text_1, FigureStyleNormal.class);
+        }
+        figure.setFigure(f);
+        figure.show();
     }
 
     @Override
