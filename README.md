@@ -3,7 +3,7 @@ BadgeLayout offers an easier way of designing, creating and controlling badges w
 
 ## Usage
 
-  1. Include `BadgeRelativeLayout`/`BadgeFrameLayout` in your xml (Here I take `BadgeRelativeLayout` for example). Wrap your target views that you intend to put badges on within `BadgeRelativeLayout`.
+  1. Include `BadgeRelativeLayout`/`BadgeFrameLayout` in your layout (Here I take `BadgeRelativeLayout` for example). Wrap your target views that you intend to put badges on within `BadgeRelativeLayout`.
 
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
