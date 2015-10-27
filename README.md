@@ -3,7 +3,7 @@ BadgeLayout offers an easier way of designing, creating and controlling badges w
 
 ## Requirement
   
-  1. Above Android API 9.
+  1. Android API 9 or higher.
   2. Include [badge.jar](https://github.com/Cookizz/Android-BadgeLayout/blob/master/release/badge.jar) in your  dependencies.
   
 ## Usage
