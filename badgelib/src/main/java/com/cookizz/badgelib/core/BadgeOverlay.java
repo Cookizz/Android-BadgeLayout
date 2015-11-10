@@ -3,6 +3,7 @@ package com.cookizz.badgelib.core;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.Build;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
@@ -54,39 +55,35 @@ public final class BadgeOverlay extends View implements BadgeContainer {
 
     /**
      * 放置角标
-     * @param viewId
-     * @param mutable
      */
-    public void putMutable(int viewId, BadgeMutable mutable) {
+    public void putMutable(int targetViewId, BadgeMutable mutable) {
         if(mutable != null && mutable instanceof AbsBadgeMutable) {
             AbsBadgeMutable absBadgeMutable = (AbsBadgeMutable) mutable;
             if(absBadgeMutable.authenticateContainer(this)) {
-                BadgeMutable remaining = mMutables.get(viewId);
+                BadgeMutable remaining = mMutables.get(targetViewId);
                 if(remaining != null) {
                     remaining.detach(false);
                 }
-                mMutables.put(viewId, mutable);
+                mMutables.put(targetViewId, mutable);
             }
         }
     }
 
     /**
      * 获得指定角标状态
-     * @param viewId
-     * @return
      */
-    public BadgeMutable getMutable(int viewId) {
-        return mMutables.get(viewId);
+    public BadgeMutable getMutable(int targetViewId) {
+        return mMutables.get(targetViewId);
     }
 
     /**
      * 删除角标状态
      */
-    public void removeMutable(int viewId) {
-        BadgeMutable mutable = mMutables.get(viewId);
+    public void removeMutable(int targetViewId) {
+        BadgeMutable mutable = mMutables.get(targetViewId);
         if(mutable != null) {
             mutable.detach(false);
-            mMutables.remove(viewId);
+            mMutables.remove(targetViewId);
         }
     }
 
@@ -104,7 +101,6 @@ public final class BadgeOverlay extends View implements BadgeContainer {
 
     /**
      * 提供将要绘制的矩形区域集合
-     * @param rects
      */
     public void feedRects(SparseArray<Rect> rects) {
         mRectList = rects;
@@ -112,10 +108,17 @@ public final class BadgeOverlay extends View implements BadgeContainer {
 
     /**
      * 获得角标状态（副本）
-     * @return
      */
     public SparseArray<BadgeMutable> copyMutables() {
-        return mMutables.clone();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            return mMutables.clone();
+        } else {
+            SparseArray<BadgeMutable> copy = new SparseArray<>();
+            for(int i = 0; i < mMutables.size(); i++) {
+                copy.put(mMutables.keyAt(i), mMutables.valueAt(i));
+            }
+            return copy;
+        }
     }
 
     @Override

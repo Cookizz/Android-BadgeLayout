@@ -20,12 +20,12 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:appcompat-v7:23.1.0'
 }
 
 /** make jar file */
 task clearJar(type: Delete) {
-    delete 'build/outputs/yourname.jar'
+    delete 'build/outputs/badgelib.jar'
 }
 
 task makeJar(type: Copy) {
