@@ -1,9 +1,14 @@
 # Android-BadgeLayout
-BadgeLayout offers an easier way of designing, creating and controlling badges within your Android apps. You pay no attention to any View issues during your development.
+BadgeLayout provides an easier way of designing, creating and controlling badges within your Android apps. You pay no attention to any View issues during your development.
 
+## Requirement
+  
+  1. Android API 9 or higher.
+  2. Add [badge.jar](https://github.com/Cookizz/Android-BadgeLayout/blob/master/release/badge.jar) to your file dependencies.
+  
 ## Usage
 
-  1. Include `BadgeRelativeLayout`/`BadgeFrameLayout` in your layout (Here I take `BadgeRelativeLayout` for example). Wrap your target views that you intend to put badges on within `BadgeRelativeLayout`.
+  1. Include `com.cookizz.badgelib.BadgeRelativeLayout` or `com.cookizz.badgelib.BadgeFrameLayout` in your layout (Here I take `BadgeRelativeLayout` for example). Wrap your target views that you intend to put badges on within `BadgeRelativeLayout`.
 
         <com.cookizz.badgelib.BadgeRelativeLayout
             android:id="@+id/badge_manager"
