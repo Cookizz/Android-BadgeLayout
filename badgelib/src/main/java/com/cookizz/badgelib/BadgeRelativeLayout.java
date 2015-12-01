@@ -2,6 +2,7 @@ package com.cookizz.badgelib;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.View;
@@ -59,7 +60,11 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
     }
 
     public BadgeRelativeLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
+    }
+
+    public BadgeRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
         mFactory = BadgeStyleFactory.getInstance(context);
         mObserver = getViewTreeObserver();
@@ -240,7 +245,6 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
 
     /**
      * 下列方法禁止子类覆盖
-     * @return
      */
     @Override
     public final int getChildCount() {
@@ -258,7 +262,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
     }
 
     @Override
-    public final void bringChildToFront(View child) {
+    public final void bringChildToFront(@NonNull View child) {
         super.bringChildToFront(child);
     }
 }
