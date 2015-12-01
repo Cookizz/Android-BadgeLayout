@@ -1,6 +1,5 @@
 package com.cookizz.badgelib;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
@@ -62,24 +61,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
     }
 
     public BadgeRelativeLayout(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public BadgeRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        mFactory = BadgeStyleFactory.getInstance(context);
-        mObserver = getViewTreeObserver();
-
-        mOverlay = new BadgeOverlay(context);
-        mOverlayLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-
-        mTargetViews = new SparseArray<>();
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public BadgeRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+        super(context, attrs);
 
         mFactory = BadgeStyleFactory.getInstance(context);
         mObserver = getViewTreeObserver();
@@ -260,6 +242,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
 
     /**
      * 下列方法禁止子类覆盖
+     * @return
      */
     @Override
     public final int getChildCount() {
@@ -277,7 +260,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
     }
 
     @Override
-    public final void bringChildToFront(@NonNull View child) {
+    public final void bringChildToFront(View child) {
         super.bringChildToFront(child);
     }
 }
