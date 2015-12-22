@@ -78,8 +78,8 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
         
             /** 
              * You must point out which screen resolution your design is based on.
-             * The base class will automatically complete screen adaption in the runtime.
-             * Point's x value indicates the width pixels of the screen,
+             * The base class will automatically complete screen adaption in runtime.
+             * Point's x value indicates width pixels of the screen,
              * y, of course, the height.
              */
             @Override
