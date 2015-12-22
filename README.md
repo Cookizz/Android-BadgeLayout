@@ -140,7 +140,7 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
             public int getWidth(int figure) { // your design }
         
             /**
-             * Point out the intrinsic text relative to specified figure value.
+             * Point out the intrinsic text mapping the comming specified figure value.
              */
             @Override
             public String getText(int figure) { // your design }
