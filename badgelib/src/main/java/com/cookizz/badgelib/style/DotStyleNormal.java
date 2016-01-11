@@ -1,16 +1,16 @@
-package com.cookizz.badgelib;
+package com.cookizz.badgelib.style;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 
-import com.cookizz.badgelib.template.DotStyleTemplate;
+import com.cookizz.badgelib.core.style.DotStyle;
 
 /**
  * 小圆点角标：贴附中等大小控件
  * Created by dugd on 2015/9/17.
  */
-public class DotStyleNormal extends DotStyleTemplate {
+public class DotStyleNormal extends DotStyle {
 
 
     public DotStyleNormal(Context context) {

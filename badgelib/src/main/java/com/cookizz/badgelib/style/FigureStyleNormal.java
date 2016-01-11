@@ -1,17 +1,17 @@
-package com.cookizz.badgelib;
+package com.cookizz.badgelib.style;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
 
-import com.cookizz.badgelib.template.FigureStyleTemplate;
+import com.cookizz.badgelib.core.style.FigureStyle;
 
 /**
  * 数字角标：贴附中等大小控件
  * Created by dugd on 2015/9/17.
  */
-public class FigureStyleNormal extends FigureStyleTemplate {
+public class FigureStyleNormal extends FigureStyle {
 
     private final String TAG = getClass().getSimpleName();
 

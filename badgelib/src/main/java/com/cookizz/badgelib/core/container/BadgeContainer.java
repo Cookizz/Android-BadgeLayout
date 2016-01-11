@@ -1,4 +1,4 @@
-package com.cookizz.badgelib.core;
+package com.cookizz.badgelib.core.container;
 
 /**
  * 角标容器

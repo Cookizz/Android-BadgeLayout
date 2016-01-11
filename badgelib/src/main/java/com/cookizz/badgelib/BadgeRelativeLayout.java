@@ -14,9 +14,13 @@ import android.widget.RelativeLayout;
 
 import com.cookizz.badgelib.core.BadgeManager;
 import com.cookizz.badgelib.core.BadgeObserver;
-import com.cookizz.badgelib.core.BadgeOverlay;
-import com.cookizz.badgelib.core.BadgeMutable;
+import com.cookizz.badgelib.core.mutable.BadgeMutable;
 import com.cookizz.badgelib.core.style.AbsBadgeStyle;
+import com.cookizz.badgelib.core.container.BadgeOverlay;
+import com.cookizz.badgelib.core.style.DotStyle;
+import com.cookizz.badgelib.core.style.FigureStyle;
+import com.cookizz.badgelib.mutable.DotBadge;
+import com.cookizz.badgelib.mutable.FigureBadge;
 import com.cookizz.badgelib.core.style.BadgeStyleFactory;
 
 /**
@@ -53,6 +57,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
 
     // 角标targetView缓存
     private final SparseArray<View> mTargetViews;
+    private int mockId = -1; // 假想的viewId，用来与无法提供id的view进行绑定
 
     // 临时计算用矩形
     private final Rect mTempRect = new Rect();
@@ -95,14 +100,37 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
 
         View childView = findViewById(viewId);
         FigureBadge mutable = null;
-        if(childView != null) {
+        if (childView != null) {
             AbsBadgeStyle style = mFactory.createStyle(badgeStyle);
             mutable = new FigureBadge(style);
             mutable.setObserver(this);
-            mOverlay.putMutable(viewId, mutable);
+            mOverlay.putBadgeMutable(viewId, mutable);
             mTargetViews.put(viewId, childView);
             mOverlay.invalidate();
         }
+        return mutable;
+    }
+
+    @Override
+    public FigureBadge createFigureBadge(View view, Class<? extends FigureStyle> badgeStyle) {
+
+        AbsBadgeStyle style = mFactory.createStyle(badgeStyle);
+        FigureBadge mutable = new FigureBadge(style);
+        if (view == null || !isDescendant(view, this)) {
+            return mutable;
+        }
+        mutable.setObserver(this);
+
+        int mockId;
+        int indexOfValue = mTargetViews.indexOfValue(view);
+        if (indexOfValue == -1) {
+            mockId = generateMockId();
+        } else {
+            mockId = mTargetViews.keyAt(indexOfValue);
+        }
+        mOverlay.putBadgeMutable(mockId, mutable);
+        mTargetViews.put(mockId, view);
+        mOverlay.invalidate();
         return mutable;
     }
 
@@ -110,11 +138,11 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
     public final DotBadge createDotBadge(int viewId, Class badgeStyle) {
         View childView = findViewById(viewId);
         DotBadge mutable = null;
-        if(childView != null) {
+        if (childView != null) {
             AbsBadgeStyle style = mFactory.createStyle(badgeStyle);
             mutable = new DotBadge(style);
             mutable.setObserver(this);
-            mOverlay.putMutable(viewId, mutable);
+            mOverlay.putBadgeMutable(viewId, mutable);
             mTargetViews.put(viewId, childView);
             mOverlay.invalidate();
         }
@@ -122,9 +150,50 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
     }
 
     @Override
+    public DotBadge createDotBadge(View view, Class<? extends DotStyle> badgeStyle) {
+
+        AbsBadgeStyle style = mFactory.createStyle(badgeStyle);
+        DotBadge mutable = new DotBadge(style);
+        if (view == null || !isDescendant(view, this)) {
+            return mutable;
+        }
+        mutable.setObserver(this);
+
+        int mockId;
+        int indexOfValue = mTargetViews.indexOfValue(view);
+        if (indexOfValue == -1) {
+            mockId = generateMockId();
+        } else {
+            mockId = mTargetViews.keyAt(indexOfValue);
+        }
+        mOverlay.putBadgeMutable(mockId, mutable);
+        mTargetViews.put(mockId, view);
+        mOverlay.invalidate();
+        return mutable;
+    }
+
+    private boolean isDescendant(View child, View container) {
+        if (child == null || container == null) {
+            return false;
+        }
+        while (child != null) {
+            View parent = (View) child.getParent();
+            if (parent == container) {
+                return true;
+            }
+            child = parent;
+        }
+        return false;
+    }
+
+    private int generateMockId() {
+        return --mockId;
+    }
+
+    @Override
     public final void clearAllBadges() {
 
-        mOverlay.clearMutables();
+        mOverlay.clearBadgeMutables();
         mTargetViews.clear();
         mOverlay.invalidate();
     }
@@ -157,7 +226,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
     private SparseArray<Rect> assembleRects() {
 
         SparseArray<Rect> rects = new SparseArray<>();
-        SparseArray<BadgeMutable> mutables = mOverlay.copyMutables();
+        SparseArray<BadgeMutable> mutables = mOverlay.getBadgeMutableCopies();
 
         final int size = mutables.size();
         for(int i = 0; i < size; i++) {
@@ -187,7 +256,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
 
         // 如果mutable已经是detach状态，则从overlay中删除之，直接返回
         if(mutable != null && !mutable.isAttached()) {
-            mOverlay.removeMutable(id);
+            mOverlay.removeBadgeMutable(id);
             if(outRect != null) {
                 outRect.setEmpty();
             }
@@ -223,7 +292,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
         }
 
         // 如果子View不在本布局中，清除该View的缓存
-        mOverlay.removeMutable(id);
+        mOverlay.removeBadgeMutable(id);
         mTargetViews.remove(id);
         outRect.setEmpty();
     }

@@ -1,5 +1,7 @@
-package com.cookizz.badgelib.core;
+package com.cookizz.badgelib.core.mutable;
 
+import com.cookizz.badgelib.core.container.BadgeContainer;
+import com.cookizz.badgelib.core.BadgeObserver;
 import com.cookizz.badgelib.core.style.BadgeStyle;
 
 /**
@@ -90,10 +92,8 @@ public abstract class AbsBadgeMutable implements BadgeMutable {
 
     /**
      * 认证Container
-     * @param container
-     * @return
      */
-    final boolean authenticateContainer(BadgeContainer container) {
+    public final boolean authenticateContainer(BadgeContainer container) {
         if(mContainer == null && !isDetached) {
             mContainer = container;
             isAttached = true;

@@ -1,4 +1,4 @@
-package com.cookizz.badgelib.core;
+package com.cookizz.badgelib.core.mutable;
 
 import com.cookizz.badgelib.core.BadgeObserver;
 import com.cookizz.badgelib.core.style.BadgeStyle;
@@ -31,7 +31,6 @@ public interface BadgeMutable {
 
     /**
      * 分离角标（可选择是否通知观察者）
-     * @param notifyObserver
      */
     void detach(boolean notifyObserver);
 
@@ -42,7 +41,6 @@ public interface BadgeMutable {
 
     /**
      * 获得角标样式
-     * @return
      */
     BadgeStyle getStyle();
 

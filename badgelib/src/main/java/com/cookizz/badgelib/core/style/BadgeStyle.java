@@ -3,7 +3,7 @@ package com.cookizz.badgelib.core.style;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.cookizz.badgelib.core.BadgeMutable;
+import com.cookizz.badgelib.core.mutable.BadgeMutable;
 
 /**
  * 角标样式接口
@@ -13,9 +13,9 @@ public interface BadgeStyle {
 
     /**
      * 应用样式
-     * @param canvas
-     * @param rect
-     * @param mutable
+     * @param canvas 画布
+     * @param rect 绘制的目标矩形区域
+     * @param mutable 角标可变状态
      */
     void apply(Canvas canvas, Rect rect, BadgeMutable mutable);
 }

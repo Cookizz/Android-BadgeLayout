@@ -14,14 +14,18 @@ import android.widget.FrameLayout;
 
 import com.cookizz.badgelib.core.BadgeManager;
 import com.cookizz.badgelib.core.BadgeObserver;
-import com.cookizz.badgelib.core.BadgeOverlay;
-import com.cookizz.badgelib.core.BadgeMutable;
+import com.cookizz.badgelib.core.mutable.BadgeMutable;
 import com.cookizz.badgelib.core.style.AbsBadgeStyle;
+import com.cookizz.badgelib.core.container.BadgeOverlay;
+import com.cookizz.badgelib.core.style.DotStyle;
+import com.cookizz.badgelib.core.style.FigureStyle;
+import com.cookizz.badgelib.mutable.DotBadge;
+import com.cookizz.badgelib.mutable.FigureBadge;
 import com.cookizz.badgelib.core.style.BadgeStyleFactory;
 
 /**
  * 角标帧布局
- * Created by dugd on 2015/10/9.
+ * Created by Dobbi on 2015/10/9.
  */
 public class BadgeFrameLayout extends FrameLayout implements BadgeManager, BadgeObserver {
 
@@ -34,11 +38,11 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
         @Override
         public boolean onPreDraw() {
             // 随时恢复对新observer的引用，使其保持alive状态
-            if(!mObserver.isAlive()) {
+            if (!mObserver.isAlive()) {
                 mObserver = getViewTreeObserver();
             }
             // 避免overlay不断重绘
-            if(preDrawFilter++ % 2 == 0) {
+            if (preDrawFilter++ % 2 == 0) {
                 SparseArray<Rect> rects = assembleRects();
                 mOverlay.feedRects(rects);
                 restoreOverlay();
@@ -53,6 +57,7 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
 
     // 角标targetView缓存
     private final SparseArray<View> mTargetViews;
+    private int mockId = -1; // 假想的viewId，用来与无法提供id的view进行绑定
 
     // 临时计算用矩形
     private final Rect mTempRect = new Rect();
@@ -95,14 +100,37 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
 
         View childView = findViewById(viewId);
         FigureBadge mutable = null;
-        if(childView != null) {
+        if (childView != null) {
             AbsBadgeStyle style = mFactory.createStyle(badgeStyle);
             mutable = new FigureBadge(style);
             mutable.setObserver(this);
-            mOverlay.putMutable(viewId, mutable);
+            mOverlay.putBadgeMutable(viewId, mutable);
             mTargetViews.put(viewId, childView);
             mOverlay.invalidate();
         }
+        return mutable;
+    }
+
+    @Override
+    public FigureBadge createFigureBadge(View view, Class<? extends FigureStyle> badgeStyle) {
+
+        AbsBadgeStyle style = mFactory.createStyle(badgeStyle);
+        FigureBadge mutable = new FigureBadge(style);
+        if (view == null || !isDescendant(view, this)) {
+            return mutable;
+        }
+        mutable.setObserver(this);
+
+        int mockId;
+        int indexOfValue = mTargetViews.indexOfValue(view);
+        if (indexOfValue == -1) {
+            mockId = generateMockId();
+        } else {
+            mockId = mTargetViews.keyAt(indexOfValue);
+        }
+        mOverlay.putBadgeMutable(mockId, mutable);
+        mTargetViews.put(mockId, view);
+        mOverlay.invalidate();
         return mutable;
     }
 
@@ -110,11 +138,11 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
     public final DotBadge createDotBadge(int viewId, Class badgeStyle) {
         View childView = findViewById(viewId);
         DotBadge mutable = null;
-        if(childView != null) {
+        if (childView != null) {
             AbsBadgeStyle style = mFactory.createStyle(badgeStyle);
             mutable = new DotBadge(style);
             mutable.setObserver(this);
-            mOverlay.putMutable(viewId, mutable);
+            mOverlay.putBadgeMutable(viewId, mutable);
             mTargetViews.put(viewId, childView);
             mOverlay.invalidate();
         }
@@ -122,9 +150,50 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
     }
 
     @Override
+    public DotBadge createDotBadge(View view, Class<? extends DotStyle> badgeStyle) {
+
+        AbsBadgeStyle style = mFactory.createStyle(badgeStyle);
+        DotBadge mutable = new DotBadge(style);
+        if (view == null || !isDescendant(view, this)) {
+            return mutable;
+        }
+        mutable.setObserver(this);
+
+        int mockId;
+        int indexOfValue = mTargetViews.indexOfValue(view);
+        if (indexOfValue == -1) {
+            mockId = generateMockId();
+        } else {
+            mockId = mTargetViews.keyAt(indexOfValue);
+        }
+        mOverlay.putBadgeMutable(mockId, mutable);
+        mTargetViews.put(mockId, view);
+        mOverlay.invalidate();
+        return mutable;
+    }
+
+    private boolean isDescendant(View child, View container) {
+        if (child == null || container == null) {
+            return false;
+        }
+        while (child != null) {
+            View parent = (View) child.getParent();
+            if (parent == container) {
+                return true;
+            }
+            child = parent;
+        }
+        return false;
+    }
+
+    private int generateMockId() {
+        return --mockId;
+    }
+
+    @Override
     public final void clearAllBadges() {
 
-        mOverlay.clearMutables();
+        mOverlay.clearBadgeMutables();
         mTargetViews.clear();
         mOverlay.invalidate();
     }
@@ -135,7 +204,7 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
 
         // 唤醒listeners
         mObserver = getViewTreeObserver();
-        if(mObserver.isAlive()) {
+        if (mObserver.isAlive()) {
             mObserver.addOnPreDrawListener(mOnPreDrawListener);
         }
     }
@@ -146,7 +215,7 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
 
         // 移除listeners
         mObserver = getViewTreeObserver();
-        if(mObserver.isAlive()) {
+        if (mObserver.isAlive()) {
             mObserver.removeOnPreDrawListener(mOnPreDrawListener);
         }
     }
@@ -157,19 +226,19 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
     private SparseArray<Rect> assembleRects() {
 
         SparseArray<Rect> rects = new SparseArray<>();
-        SparseArray<BadgeMutable> mutables = mOverlay.copyMutables();
+        SparseArray<BadgeMutable> mutables = mOverlay.getBadgeMutableCopies();
 
         final int size = mutables.size();
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             int id = mutables.keyAt(i);
             BadgeMutable mutable = mutables.get(id);
             View childView = mTargetViews.get(id);
-            if(childView != null) {
-                if(childView.getVisibility() == View.VISIBLE) {
+            if (childView != null) {
+                if (childView.getVisibility() == View.VISIBLE) {
                     Rect outRect = new Rect();
                     mTempRect.setEmpty();
                     calcuIntrinsicHitRect(childView, outRect, mutable, id);
-                    if(!outRect.isEmpty()) {
+                    if (!outRect.isEmpty()) {
                         rects.put(id, outRect);
                     }
                 }
@@ -186,19 +255,19 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
     private void calcuIntrinsicHitRect(View childView, Rect outRect, BadgeMutable mutable, int id) {
 
         // 如果mutable已经是detach状态，则从overlay中删除之，直接返回
-        if(mutable != null && !mutable.isAttached()) {
-            mOverlay.removeMutable(id);
+        if (mutable != null && !mutable.isAttached()) {
+            mOverlay.removeBadgeMutable(id);
             if(outRect != null) {
                 outRect.setEmpty();
             }
             return;
         }
 
-        if(outRect == null) {
+        if (outRect == null) {
             return;
         }
 
-        if(childView == null) {
+        if (childView == null) {
             outRect.setEmpty();
             return;
         }
@@ -209,8 +278,8 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
         View currParent = (View) childView.getParent();
 
         // 向根布局回溯，直到找到角标布局
-        while(currParent != null) {
-            if(this == currParent) {
+        while (currParent != null) {
+            if (this == currParent) {
                 offsetX -= currParent.getPaddingLeft();
                 offsetY -= currParent.getPaddingTop();
                 outRect.offset(offsetX, offsetY);
@@ -223,7 +292,7 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
         }
 
         // 如果子View不在本布局中，清除该View的缓存
-        mOverlay.removeMutable(id);
+        mOverlay.removeBadgeMutable(id);
         mTargetViews.remove(id);
         outRect.setEmpty();
     }
@@ -235,7 +304,7 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager, Badge
 
         mOverlay.setLayoutParams(mOverlayLayoutParams);
         ViewGroup parent = (ViewGroup) mOverlay.getParent();
-        if(parent == null) {
+        if (parent == null) {
             addView(mOverlay);
         }
         else if(parent != this) {

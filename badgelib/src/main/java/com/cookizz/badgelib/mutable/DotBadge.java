@@ -1,6 +1,6 @@
-package com.cookizz.badgelib;
+package com.cookizz.badgelib.mutable;
 
-import com.cookizz.badgelib.core.AbsBadgeMutable;
+import com.cookizz.badgelib.core.mutable.AbsBadgeMutable;
 import com.cookizz.badgelib.core.style.BadgeStyle;
 
 /**

@@ -31,8 +31,6 @@ public final class BadgeStyleFactory {
 
     /**
      * 创建（提取）角标样式
-     * @param clazz
-     * @return
      */
     public AbsBadgeStyle createStyle(Class clazz) {
 
