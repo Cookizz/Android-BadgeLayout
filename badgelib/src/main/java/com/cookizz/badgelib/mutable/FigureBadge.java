@@ -1,6 +1,7 @@
 package com.cookizz.badgelib.mutable;
 
 import com.cookizz.badgelib.core.mutable.AbsBadgeMutable;
+import com.cookizz.badgelib.core.mutable.BadgeMutable;
 import com.cookizz.badgelib.core.style.BadgeStyle;
 
 /**
@@ -16,11 +17,14 @@ public final class FigureBadge extends AbsBadgeMutable {
         figure = 0;
     }
 
-    public void setFigure(int figure) {
+    @Override
+    public BadgeMutable setFigure(int figure) {
         this.figure = figure;
         notifyObserver();
+        return this;
     }
 
+    @Override
     public int getFigure() {
         return figure;
     }

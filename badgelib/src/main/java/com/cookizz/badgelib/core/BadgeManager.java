@@ -2,6 +2,7 @@ package com.cookizz.badgelib.core;
 
 import android.view.View;
 
+import com.cookizz.badgelib.core.mutable.BadgeMutable;
 import com.cookizz.badgelib.core.style.DotStyle;
 import com.cookizz.badgelib.core.style.FigureStyle;
 import com.cookizz.badgelib.mutable.DotBadge;
@@ -32,6 +33,18 @@ public interface BadgeManager {
     DotBadge createDotBadge(int viewId, Class<? extends DotStyle> badgeStyle);
 
     DotBadge createDotBadge(View view, Class<? extends DotStyle> badgeStyle);
+
+    /**
+     * 找到某个角标
+     * @param viewId 目标控件的布局id
+     */
+    BadgeMutable findBadge(int viewId);
+
+    /**
+     * 找到某个角标
+     * @param view 目标控件引用
+     */
+    BadgeMutable findBadge(View view);
 
     /**
      * 清除所有角标

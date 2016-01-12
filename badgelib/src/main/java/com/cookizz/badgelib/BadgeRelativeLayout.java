@@ -172,6 +172,21 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager,
         return mutable;
     }
 
+    @Override
+    public BadgeMutable findBadge(int viewId) {
+        return mOverlay.getBadgeMutable(viewId);
+    }
+
+    @Override
+    public BadgeMutable findBadge(View view) {
+        int index = mTargetViews.indexOfValue(view);
+        if (index == -1) {
+            return null;
+        }
+        int mockId = mTargetViews.keyAt(index);
+        return mOverlay.getBadgeMutable(mockId);
+    }
+
     private boolean isDescendant(View child, View container) {
         if (child == null || container == null) {
             return false;

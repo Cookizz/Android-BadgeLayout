@@ -12,12 +12,12 @@ public interface BadgeMutable {
     /**
      * 显示角标
      */
-    void show();
+    BadgeMutable show();
 
     /**
      * 隐藏角标
      */
-    void hide();
+    BadgeMutable hide();
 
     /**
      * 判断角标显隐性
@@ -46,7 +46,6 @@ public interface BadgeMutable {
 
     /**
      * 设置观察者
-     * @param observer
      */
     void setObserver(BadgeObserver observer);
 
@@ -54,4 +53,8 @@ public interface BadgeMutable {
      * 移除观察者
      */
     void removeObserver();
+
+    BadgeMutable setFigure(int figure);
+
+    int getFigure();
 }

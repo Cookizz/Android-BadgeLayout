@@ -27,19 +27,21 @@ public abstract class AbsBadgeMutable implements BadgeMutable {
     }
 
     @Override
-    public void show() {
+    public BadgeMutable show() {
         if(!isShown) {
             isShown = true;
             notifyObserver();
         }
+        return this;
     }
 
     @Override
-    public void hide() {
+    public BadgeMutable hide() {
         if(isShown) {
             isShown = false;
             notifyObserver();
         }
+        return this;
     }
 
     @Override
