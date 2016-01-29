@@ -8,7 +8,9 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
   
 ## Usage
 
-  1. Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout (Here I take `BadgeRelativeLayout` for example). Wrap your target views that you intend to put badges on.
+  1. Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout. Wrap your target views that you intend to put badges on.
+  
+  Here I take `BadgeRelativeLayout` as an example:
 
         <com.cookizz.badge.BadgeRelativeLayout
             android:id="@+id/badge_layout"
@@ -66,9 +68,9 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
 ## Design your badge style
   Quite easy! Take `FigureBadge` as an example...
   
-  1. Create a subclass of `FigureStyleTemplate` and implement your design.
+  1. Create a subclass of `FigureStyle` and implement your design.
   
-        public class MyFigureStyle extends FigureStyleTemplate {
+        public class MyFigureStyle extends FigureStyle {
         
             /** 
              * You must point out which screen resolution your design is based on.
@@ -150,7 +152,9 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
   2. Put your design into use.
 
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-        FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.class);
+        FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.class)
+                .setFigure(45)
+                .show();
 
 ## Limitations
   
