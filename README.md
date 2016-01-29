@@ -43,13 +43,13 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         
         // create a dot badge on @id/text_1
-        DotBadge dot = manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
-        dot.show();
+        manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
+                .show();
         
         // create a figure badge on @id/text_2 and set a figure
-        FigureBadge figure = manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
-        figure.show();
-        figure.setFigure(45);
+        manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
+                .setFigure(45)
+                .show();
 
   Then here comes the result: 
   
