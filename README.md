@@ -8,35 +8,28 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
   
 ## Usage
 
-  1. Include `com.cookizz.badgelib.BadgeRelativeLayout` or `com.cookizz.badgelib.BadgeFrameLayout` in your layout (Here I take `BadgeRelativeLayout` for example). Wrap your target views that you intend to put badges on within `BadgeRelativeLayout`.
+  1. Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout (Here I take `BadgeRelativeLayout` for example). Wrap your target views that you intend to put badges on.
 
-        <com.cookizz.badgelib.BadgeRelativeLayout
-            android:id="@+id/badge_manager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <com.cookizz.badge.BadgeRelativeLayout
+            android:id="@+id/badge_layout"
+            ...
+            ...>
             
             <TextView
                 android:id="@+id/text_1"
                 android:text="@string/dot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:padding="20dp"
-                android:background="@color/trans_black"/>
+                ...
+                .../>
 
             <TextView
                 android:id="@+id/text_2"
                 android:text="@string/figure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/text_1"
-                android:layout_margin="20dp"
-                android:padding="20dp"
-                android:background="@color/trans_black"/>
+                ...
+                .../>
                 
-        </com.cookizz.badgelib.BadgeRelativeLayout>
+        </com.cookizz.badge.BadgeRelativeLayout>
 
-  In no matter which view hierarchy in `BdadeRelativeLayout` will it be OK for your targets to put except ScrollView and ListView, which may be supported later on. Instead, you can include your `BadgeRelativeLayout` into ListView's item layout or inside the `ScrollView`'s layout for an equivalent result.
+  In no matter which view hierarchy in `BdadeRelativeLayout` will it be OK for your targets to put except ScrollView and ListView, which may be supported later on.
 
   2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
 
@@ -53,8 +46,11 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
   
   ![code effect](https://github.com/Cookizz/Android-BadgeLayout/blob/master/badgedemo/src/main/res/raw/dotandfigure.png)
     
-  3. Once you obtained a badge reference and called its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
+  3. Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
 
+        /**
+         * Interfaces in common
+         */
         void hide();
         boolean isShown();
         void detach();
@@ -62,7 +58,7 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
         BadgeStyle getStyle();
 
         /**
-         * FigureBadge exclusive methods
+         * FigureBadge exclusive
          */
         void setFigure(int);
         int getFigure();
