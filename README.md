@@ -9,9 +9,10 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
 ## Usage
 
   1. Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout. Wrap your target views that you intend to put badges on.
-  
+
   Here I take `BadgeRelativeLayout` as an example:
 
+```xml
         <com.cookizz.badge.BadgeRelativeLayout
             android:id="@+id/badge_layout"
             ...
@@ -30,11 +31,13 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
                 .../>
                 
         </com.cookizz.badge.BadgeRelativeLayout>
+```
 
   In no matter which view hierarchy in `BdadeRelativeLayout` will it be OK for your targets to put except ScrollView and ListView, which may be supported later on.
 
   2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
 
+```java
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         
         manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
@@ -43,6 +46,7 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
         manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
                 .setFigure(45)
                 .show();
+```
 
   Then here comes the result: 
   
@@ -50,6 +54,7 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
     
   3. Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
 
+```java
         /**
          * Interfaces in common
          */
@@ -64,17 +69,19 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
          */
         void setFigure(int);
         int getFigure();
+```
 
 ## Design your badge style
   Quite easy! Take `FigureBadge` as an example...
   
   1. Create a subclass of `FigureStyle` and implement your design.
   
+```java
         public class MyFigureStyle extends FigureStyle {
         
             /** 
              * You must point out which screen resolution your design is based on.
-             * The base class will automatically complete screen adaption in runtime.
+             * Badge layout will automatically complete screen adaption at runtime.
              * Point's x value indicates width pixels of the screen,
              * y, of course, the height.
              */
@@ -148,6 +155,7 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
             @Override
             public boolean isVisible(int figure) { // your design }
         }
+```
     
   2. Put your design into use.
 
