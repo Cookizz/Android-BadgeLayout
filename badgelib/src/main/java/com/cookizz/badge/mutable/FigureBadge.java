@@ -1,12 +1,12 @@
-package com.cookizz.badgelib.mutable;
+package com.cookizz.badge.mutable;
 
-import com.cookizz.badgelib.core.mutable.AbsBadgeMutable;
-import com.cookizz.badgelib.core.mutable.BadgeMutable;
-import com.cookizz.badgelib.core.style.BadgeStyle;
+import com.cookizz.badge.core.mutable.AbsBadgeMutable;
+import com.cookizz.badge.core.mutable.BadgeMutable;
+import com.cookizz.badge.core.style.BadgeStyle;
 
 /**
  * 角标可变状态
- * Created by dugd on 2015/9/19.
+ * Created by Cookizz on 2015/9/19.
  */
 public final class FigureBadge extends AbsBadgeMutable {
 

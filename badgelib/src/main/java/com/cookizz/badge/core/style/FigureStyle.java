@@ -1,4 +1,4 @@
-package com.cookizz.badgelib.core.style;
+package com.cookizz.badge.core.style;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,12 +6,12 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 
-import com.cookizz.badgelib.core.mutable.BadgeMutable;
-import com.cookizz.badgelib.mutable.FigureBadge;
+import com.cookizz.badge.core.mutable.BadgeMutable;
+import com.cookizz.badge.mutable.FigureBadge;
 
 /**
  * 数字角标(template method)
- * Created by dugd on 2015/9/17.
+ * Created by Cookizz on 2015/9/17.
  */
 public abstract class FigureStyle extends AbsBadgeStyle {
 

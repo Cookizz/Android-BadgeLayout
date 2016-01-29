@@ -1,13 +1,13 @@
-package com.cookizz.badgelib.core.style;
+package com.cookizz.badge.core.style;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.cookizz.badgelib.core.mutable.BadgeMutable;
+import com.cookizz.badge.core.mutable.BadgeMutable;
 
 /**
  * 角标样式接口
- * Created by dugd on 2015/9/14.
+ * Created by Cookizz on 2015/9/14.
  */
 public interface BadgeStyle {
 

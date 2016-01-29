@@ -1,8 +1,8 @@
-package com.cookizz.badgelib.core;
+package com.cookizz.badge.core;
 
 /**
  * 角标观察者
- * Created by dugd on 2015/9/19.
+ * Created by Cookizz on 2015/9/19.
  */
 public interface BadgeObserver {
 

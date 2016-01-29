@@ -1,4 +1,4 @@
-package com.cookizz.badgelib;
+package com.cookizz.badge;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.cookizz.badgelib.core.style;
+package com.cookizz.badge.core.style;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * 角标工厂类（flyweight, singleton）
- * Created by dugd on 2015/9/17.
+ * Created by Cookizz on 2015/9/17.
  */
 public final class BadgeStyleFactory {
 

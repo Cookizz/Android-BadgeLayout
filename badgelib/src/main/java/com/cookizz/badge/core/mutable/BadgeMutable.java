@@ -1,11 +1,11 @@
-package com.cookizz.badgelib.core.mutable;
+package com.cookizz.badge.core.mutable;
 
-import com.cookizz.badgelib.core.BadgeObserver;
-import com.cookizz.badgelib.core.style.BadgeStyle;
+import com.cookizz.badge.core.BadgeObserver;
+import com.cookizz.badge.core.style.BadgeStyle;
 
 /**
  * 角标可变状态接口
- * Created by dugd on 2015/9/19.
+ * Created by Cookizz on 2015/9/19.
  */
 public interface BadgeMutable {
 

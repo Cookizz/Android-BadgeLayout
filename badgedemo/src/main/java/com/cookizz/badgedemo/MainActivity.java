@@ -6,9 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.cookizz.badgelib.style.DotStyleNormal;
-import com.cookizz.badgelib.style.FigureStyleNormal;
-import com.cookizz.badgelib.core.BadgeManager;
+import com.cookizz.badge.style.DotStyleNormal;
+import com.cookizz.badge.style.FigureStyleNormal;
+import com.cookizz.badge.core.BadgeManager;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 

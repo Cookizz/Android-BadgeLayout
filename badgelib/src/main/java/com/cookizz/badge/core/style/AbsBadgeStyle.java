@@ -1,4 +1,4 @@
-package com.cookizz.badgelib.core.style;
+package com.cookizz.badge.core.style;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -6,11 +6,9 @@ import android.os.Build;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.cookizz.badgelib.core.style.BadgeStyle;
-
 /**
  * 角标样式(template method)
- * Created by dugd on 2015/9/17.
+ * Created by Cookizz on 2015/9/17.
  */
 public abstract class AbsBadgeStyle implements BadgeStyle {
 

@@ -1,4 +1,4 @@
-<com.cookizz.badgelib.BadgeFrameLayout
+<com.cookizz.badge.BadgeFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/badge_layout"
@@ -29,4 +29,4 @@
             android:padding="20dp"
             android:background="@color/trans_black"/>
     </RelativeLayout>
-</com.cookizz.badgelib.BadgeFrameLayout>
+</com.cookizz.badge.BadgeFrameLayout>

@@ -25,14 +25,14 @@ dependencies {
 
 /** make jar file */
 task clearJar(type: Delete) {
-    delete 'build/outputs/badgelib.jar'
+    delete 'build/outputs/badge.jar'
 }
 
 task makeJar(type: Copy) {
     from('build/intermediates/bundles/release/')
     into('build/outputs/')
     include('classes.jar')
-    rename ('classes.jar', 'badgelib.jar')
+    rename ('classes.jar', 'badge.jar')
 }
 
 makeJar.dependsOn(clearJar, build)
