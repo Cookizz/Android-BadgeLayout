@@ -159,10 +159,12 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
     
   2. Put your design into use.
 
+```java
         BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
         FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.class)
                 .setFigure(45)
                 .show();
+```
 
 ## Limitations
   
