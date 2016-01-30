@@ -13,24 +13,23 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
   Here I take `BadgeRelativeLayout` as an example:
 
 ```xml
-        <com.cookizz.badge.BadgeRelativeLayout
-            android:id="@+id/badge_layout"
-            ...
-            ...>
-            
-            <TextView
-                android:id="@+id/text_1"
-                android:text="@string/dot"
-                ...
-                .../>
+<com.cookizz.badge.BadgeRelativeLayout
+    android:id="@+id/badge_layout"
+    ...
+    ...>
+    
+    <TextView
+        android:id="@+id/text_1"
+        android:text="@string/dot"
+        ...
+        .../>
 
-            <TextView
-                android:id="@+id/text_2"
-                android:text="@string/figure"
-                ...
-                .../>
-                
-        </com.cookizz.badge.BadgeRelativeLayout>
+    <TextView
+        android:id="@+id/text_2"
+        android:text="@string/figure"
+        ...
+        .../>
+</com.cookizz.badge.BadgeRelativeLayout>
 ```
 
   In no matter which view hierarchy in `BdadeRelativeLayout` will it be OK for your targets to put except ScrollView and ListView, which may be supported later on.
@@ -38,14 +37,14 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
   2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
 
 ```java
-        BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-        
-        manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
-                .show();
-        
-        manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
-                .setFigure(45)
-                .show();
+BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
+
+manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
+        .show();
+
+manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
+        .setFigure(45)
+        .show();
 ```
 
   Then here comes the result: 
@@ -55,20 +54,20 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
   3. Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
 
 ```java
-        /**
-         * Interfaces in common
-         */
-        void hide();
-        boolean isShown();
-        void detach();
-        boolean isAttached();
-        BadgeStyle getStyle();
+/**
+ * Interfaces in common
+ */
+void hide();
+boolean isShown();
+void detach();
+boolean isAttached();
+BadgeStyle getStyle();
 
-        /**
-         * FigureBadge exclusive
-         */
-        void setFigure(int);
-        int getFigure();
+/**
+ * FigureBadge exclusive
+ */
+void setFigure(int);
+int getFigure();
 ```
 
 ## Design your badge style
@@ -139,10 +138,10 @@ public class MyFigureStyle extends FigureStyle {
   2. Put your design into use.
 
 ```java
-        BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-        FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.class)
-                .setFigure(45)
-                .show();
+BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
+FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.class)
+        .setFigure(45)
+        .show();
 ```
 
 ## Limitations
