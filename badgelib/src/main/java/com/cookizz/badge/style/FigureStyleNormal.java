@@ -8,12 +8,10 @@ import android.graphics.Typeface;
 import com.cookizz.badge.core.style.FigureStyle;
 
 /**
- * 数字角标：贴附中等大小控件
+ * A sample implementation of 'figure' badge style
  * Created by Cookizz on 2015/9/17.
  */
 public class FigureStyleNormal extends FigureStyle {
-
-    private final String TAG = getClass().getSimpleName();
 
     FigureStyleNormal(Context context) {
         super(context);

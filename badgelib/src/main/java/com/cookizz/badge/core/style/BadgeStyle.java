@@ -6,16 +6,14 @@ import android.graphics.Rect;
 import com.cookizz.badge.core.mutable.BadgeMutable;
 
 /**
- * 角标样式接口
+ * Badge style interface
  * Created by Cookizz on 2015/9/14.
  */
 public interface BadgeStyle {
 
     /**
-     * 应用样式
-     * @param canvas 画布
-     * @param rect 绘制的目标矩形区域
-     * @param mutable 角标可变状态
+     * Perform badge draw
+     * @param rect The rectangle area your badge is being drawn
      */
     void apply(Canvas canvas, Rect rect, BadgeMutable mutable);
 }

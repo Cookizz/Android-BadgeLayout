@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 角标工厂类（flyweight, singleton）
+ * Used to generate badge style (flyweight, factory)
  * Created by Cookizz on 2015/9/17.
  */
 public final class BadgeStyleFactory {
@@ -20,18 +20,13 @@ public final class BadgeStyleFactory {
         return mInstance;
     }
 
-    // 角标样式对象池
     private Map<Class, AbsBadgeStyle> mStylePool = new HashMap<>();
-
     private Context mContext;
 
     private BadgeStyleFactory(Context context) {
         mContext = context;
     }
 
-    /**
-     * 创建（提取）角标样式
-     */
     public AbsBadgeStyle createStyle(Class clazz) {
 
         AbsBadgeStyle badge = mStylePool.get(clazz);

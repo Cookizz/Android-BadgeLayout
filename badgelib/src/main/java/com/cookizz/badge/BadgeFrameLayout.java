@@ -16,7 +16,7 @@ import com.cookizz.badge.mutable.DotBadge;
 import com.cookizz.badge.mutable.FigureBadge;
 
 /**
- * 角标帧布局
+ * Subclass of FrameLayout supporting badge operation
  * Created by Cookizz on 2015/10/9.
  */
 public class BadgeFrameLayout extends FrameLayout implements BadgeManager {
@@ -93,9 +93,6 @@ public class BadgeFrameLayout extends FrameLayout implements BadgeManager {
         visitor.onDetachFromWindow();
     }
 
-    /**
-     * 下列方法禁止子类覆盖
-     */
     @Override
     public final int getChildCount() {
         return super.getChildCount();

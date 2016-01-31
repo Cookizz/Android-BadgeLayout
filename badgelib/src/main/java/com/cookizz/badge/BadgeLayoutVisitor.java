@@ -20,7 +20,7 @@ import com.cookizz.badge.mutable.DotBadge;
 import com.cookizz.badge.mutable.FigureBadge;
 
 /**
- * 角标布局访问者
+ * Badge layout internal visitor
  * Created by Cookizz on 2016/1/29.
  */
 class BadgeLayoutVisitor implements BadgeManager, BadgeObserver {
@@ -30,16 +30,13 @@ class BadgeLayoutVisitor implements BadgeManager, BadgeObserver {
     private BadgeStyleFactory badgeStyleFactory;
     private ViewTreeObserver viewTreeObserver;
 
-    // 限制重绘频率
-    private int preDrawFilter = 0;
+    private int preDrawFilter = 0; // put limitations on frequency of redrawing
     private final ViewTreeObserver.OnPreDrawListener mOnPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
         @Override
         public boolean onPreDraw() {
-            // 随时恢复对新observer的引用，使其保持alive状态
-            if(!viewTreeObserver.isAlive()) {
+            if(!viewTreeObserver.isAlive()) { // keep observer to be alive
                 viewTreeObserver = element.getViewTreeObserver();
             }
-            // 避免overlay不断重绘
             if(preDrawFilter++ % 2 == 0) {
                 SparseArray<Rect> rects = assembleRects();
                 badgeOverlay.feedRects(rects);
@@ -49,15 +46,12 @@ class BadgeLayoutVisitor implements BadgeManager, BadgeObserver {
         }
     };
 
-    // 角标绘图表面和其布局参数
     private BadgeOverlay badgeOverlay;
     private ViewGroup.LayoutParams badgeOverlayLayoutParams;
 
-    // 角标targetView缓存
-    private SparseArray<View> targetViews;
-    private int mockId = -1; // 假想的viewId，用来与无法提供id的view进行绑定
+    private SparseArray<View> targetViews; // target view cache
+    private int mockId = -1; // used for offer ids to those target views who are lack of id
 
-    // 临时计算用矩形
     private final Rect mTempRect = new Rect();
 
     public void visit(RelativeLayout relativeLayout) {
@@ -184,7 +178,7 @@ class BadgeLayoutVisitor implements BadgeManager, BadgeObserver {
     }
 
     public void onAttachToWindow() {
-        // 唤醒listeners
+        // revoke observer
         viewTreeObserver = element.getViewTreeObserver();
         if(viewTreeObserver.isAlive()) {
             viewTreeObserver.addOnPreDrawListener(mOnPreDrawListener);
@@ -192,16 +186,13 @@ class BadgeLayoutVisitor implements BadgeManager, BadgeObserver {
     }
 
     public void onDetachFromWindow() {
-        // 移除listeners
+        // remove observer
         viewTreeObserver = element.getViewTreeObserver();
         if(viewTreeObserver.isAlive()) {
             viewTreeObserver.removeOnPreDrawListener(mOnPreDrawListener);
         }
     }
 
-    /**
-     * 收集当前需要绘制角标的目标矩形区域
-     */
     private SparseArray<Rect> assembleRects() {
 
         SparseArray<Rect> rects = new SparseArray<>();
@@ -216,7 +207,7 @@ class BadgeLayoutVisitor implements BadgeManager, BadgeObserver {
                 if(childView.getVisibility() == View.VISIBLE) {
                     Rect outRect = new Rect();
                     mTempRect.setEmpty();
-                    calcuIntrinsicHitRect(childView, outRect, mutable, id);
+                    calculateIntrinsicHitRect(childView, outRect, mutable, id);
                     if(!outRect.isEmpty()) {
                         rects.put(id, outRect);
                     }
@@ -227,13 +218,11 @@ class BadgeLayoutVisitor implements BadgeManager, BadgeObserver {
     }
 
     /**
-     * 定位子View
-     * @param childView 子View
-     * @param outRect 方法的输出对象
+     * used for positioning the drawing area of the given targetView
+     * @param outRect rectangle drawing area to output
      */
-    private void calcuIntrinsicHitRect(View childView, Rect outRect, BadgeMutable mutable, int id) {
+    private void calculateIntrinsicHitRect(View childView, Rect outRect, BadgeMutable mutable, int id) {
 
-        // 如果mutable已经是detach状态，则从overlay中删除之，直接返回
         if(mutable != null && !mutable.isAttached()) {
             badgeOverlay.removeBadgeMutable(id);
             if(outRect != null) {
@@ -256,7 +245,7 @@ class BadgeLayoutVisitor implements BadgeManager, BadgeObserver {
         int offsetX = 0, offsetY = 0;
         View currParent = (View) childView.getParent();
 
-        // 向根布局回溯，直到找到角标布局
+        // retrieve towards root, until meeting BadgeLayout
         while(currParent != null) {
             if(element == currParent) {
                 offsetX -= currParent.getPaddingLeft();
@@ -270,15 +259,12 @@ class BadgeLayoutVisitor implements BadgeManager, BadgeObserver {
             currParent = (View) currParent.getParent();
         }
 
-        // 如果子View不在本布局中，清除该View的缓存
+        // clear cache
         badgeOverlay.removeBadgeMutable(id);
         targetViews.remove(id);
         outRect.setEmpty();
     }
 
-    /**
-     * 恢复角标绘图表面
-     */
     private void restoreOverlay() {
 
         badgeOverlay.setLayoutParams(badgeOverlayLayoutParams);

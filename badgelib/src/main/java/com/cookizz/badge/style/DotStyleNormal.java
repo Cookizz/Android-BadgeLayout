@@ -7,7 +7,7 @@ import android.graphics.Point;
 import com.cookizz.badge.core.style.DotStyle;
 
 /**
- * 小圆点角标：贴附中等大小控件
+ * A sample implementation of 'dot' badge style
  * Created by Cookizz on 2015/9/17.
  */
 public class DotStyleNormal extends DotStyle {

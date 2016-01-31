@@ -16,7 +16,7 @@ import com.cookizz.badge.mutable.DotBadge;
 import com.cookizz.badge.mutable.FigureBadge;
 
 /**
- * 角标相对布局
+ * Subclass of RelativeLayout supporting badge operation
  * Created by Cookizz on 2015/9/13.
  */
 public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager {
@@ -93,9 +93,6 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager 
         visitor.onDetachFromWindow();
     }
 
-    /**
-     * 下列方法禁止子类覆盖
-     */
     @Override
     public final int getChildCount() {
         return super.getChildCount();

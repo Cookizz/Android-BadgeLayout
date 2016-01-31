@@ -8,7 +8,7 @@ import android.graphics.Rect;
 import com.cookizz.badge.core.mutable.BadgeMutable;
 
 /**
- * 小圆点角标(template method)
+ * Base class for dot badge style (template method)
  * Created by Cookizz on 2015/9/17.
  */
 public abstract class DotStyle extends AbsBadgeStyle {
@@ -19,12 +19,11 @@ public abstract class DotStyle extends AbsBadgeStyle {
     public DotStyle(Context context) {
         super(context);
 
-        // 应用适配缩放比
-        offset.x *= mAdaptScale;
-        offset.y *= mAdaptScale;
-        radius = (int) (getRadius() * mAdaptScale);
+        // calculate screen-adapted values
+        offset.x *= screenAdaptionScale;
+        offset.y *= screenAdaptionScale;
+        radius = (int) (getRadius() * screenAdaptionScale);
 
-        // 初始化背景画笔
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setColor(getBackgroundColor(context));

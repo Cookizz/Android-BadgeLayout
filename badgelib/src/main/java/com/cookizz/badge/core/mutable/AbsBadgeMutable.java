@@ -5,7 +5,7 @@ import com.cookizz.badge.core.BadgeObserver;
 import com.cookizz.badge.core.style.BadgeStyle;
 
 /**
- * 角标可变状态抽象类
+ * Base class for badge mutable
  * Created by Cookizz on 2015/9/19.
  */
 public abstract class AbsBadgeMutable implements BadgeMutable {
@@ -83,18 +83,12 @@ public abstract class AbsBadgeMutable implements BadgeMutable {
         mObserver = null;
     }
 
-    /**
-     * 通知observer
-     */
     protected final void notifyObserver() {
         if(mObserver != null) {
             mObserver.onBadgeStateChange();
         }
     }
 
-    /**
-     * 认证Container
-     */
     public final boolean authenticateContainer(BadgeContainer container) {
         if(mContainer == null && !isDetached) {
             mContainer = container;

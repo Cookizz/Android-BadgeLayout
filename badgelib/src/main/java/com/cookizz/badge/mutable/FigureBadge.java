@@ -5,7 +5,7 @@ import com.cookizz.badge.core.mutable.BadgeMutable;
 import com.cookizz.badge.core.style.BadgeStyle;
 
 /**
- * 角标可变状态
+ * FigureBadge mutable class
  * Created by Cookizz on 2015/9/19.
  */
 public final class FigureBadge extends AbsBadgeMutable {

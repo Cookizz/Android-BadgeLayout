@@ -13,14 +13,12 @@ import com.cookizz.badge.core.mutable.BadgeMutable;
 import com.cookizz.badge.core.style.BadgeStyle;
 
 /**
- * 角标绘图表面
+ * Overlay view in badge layout where your badges are to be drawn on
  * Created by Cookizz on 2015/9/13.
  */
 public final class BadgeOverlay extends View implements BadgeContainer {
 
-    // 角标状态集合
     private final SparseArray<BadgeMutable> mutables;
-    // 待绘制的角标矩形区域集合
     private SparseArray<Rect> rects;
 
     public BadgeOverlay(Context context) {
@@ -28,7 +26,6 @@ public final class BadgeOverlay extends View implements BadgeContainer {
 
         setEnabled(false);
 
-        // 初始化集合
         mutables = new SparseArray<>();
         rects = new SparseArray<>();
     }
@@ -54,9 +51,6 @@ public final class BadgeOverlay extends View implements BadgeContainer {
         }
     }
 
-    /**
-     * 放置角标
-     */
     public void putBadgeMutable(int viewId, BadgeMutable mutable) {
         if(mutable != null && mutable instanceof AbsBadgeMutable) {
             AbsBadgeMutable absBadgeMutable = (AbsBadgeMutable) mutable;
@@ -70,16 +64,10 @@ public final class BadgeOverlay extends View implements BadgeContainer {
         }
     }
 
-    /**
-     * 获得指定角标状态
-     */
     public BadgeMutable getBadgeMutable(int targetViewId) {
         return mutables.get(targetViewId);
     }
 
-    /**
-     * 删除角标状态
-     */
     public void removeBadgeMutable(int targetViewId) {
         BadgeMutable mutable = mutables.get(targetViewId);
         if(mutable != null) {
@@ -88,9 +76,6 @@ public final class BadgeOverlay extends View implements BadgeContainer {
         }
     }
 
-    /**
-     * 清除所有角标状态
-     */
     public void clearBadgeMutables() {
         while(mutables.size() > 0) {
             int key = mutables.keyAt(0);
@@ -100,16 +85,10 @@ public final class BadgeOverlay extends View implements BadgeContainer {
         }
     }
 
-    /**
-     * 提供将要绘制的矩形区域集合
-     */
     public void feedRects(SparseArray<Rect> rects) {
         this.rects = rects;
     }
 
-    /**
-     * 获得角标状态（副本）
-     */
     public SparseArray<BadgeMutable> getBadgeMutableCopies() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             return mutables.clone();
@@ -132,7 +111,6 @@ public final class BadgeOverlay extends View implements BadgeContainer {
             Rect rect = rects.get(id);
             BadgeMutable mutable = mutables.get(id);
             if(mutable != null) {
-                // 委托drawable绘制角标当前状态
                 BadgeStyle style = mutable.getStyle();
                 if(style != null) {
                     style.apply(canvas, rect, mutable);
