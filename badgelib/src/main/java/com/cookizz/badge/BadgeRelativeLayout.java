@@ -47,7 +47,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager 
     }
 
     @Override
-    public final FigureBadge createFigureBadge(int viewId, Class badgeStyle) {
+    public final FigureBadge createFigureBadge(int viewId, Class<? extends FigureStyle> badgeStyle) {
         return visitor.createFigureBadge(viewId, badgeStyle);
     }
 
@@ -57,7 +57,7 @@ public class BadgeRelativeLayout extends RelativeLayout implements BadgeManager 
     }
 
     @Override
-    public final DotBadge createDotBadge(int viewId, Class badgeStyle) {
+    public final DotBadge createDotBadge(int viewId, Class<? extends DotStyle> badgeStyle) {
         return visitor.createDotBadge(viewId, badgeStyle);
     }
 
