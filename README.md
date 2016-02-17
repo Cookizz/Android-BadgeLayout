@@ -3,12 +3,13 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
 
 ## Requirement
   
-  1. Android API 9 or higher.
-  2. Add [badge.jar](https://github.com/Cookizz/Android-BadgeLayout/blob/master/release/badge.jar) to your file dependencies.
+- Android API 9 or higher.
   
 ## Usage
 
-  1. Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout. Wrap your target views that you intend to put badges on.
+  1. Add [badge.jar](https://github.com/Cookizz/Android-BadgeLayout/blob/master/release/badge.jar) to your file dependencies.
+
+  2. Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout. Wrap your target views that you intend to put badges on.
 
   Here I take `BadgeRelativeLayout` as an example:
 
@@ -32,9 +33,9 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
 </com.cookizz.badge.BadgeRelativeLayout>
 ```
 
-  In no matter which view hierarchy in `BdadeRelativeLayout` will it be OK for your targets to put except ScrollView and ListView, which may be supported later on.
+  In no matter which view hierarchy in `BdadeRelativeLayout` will it be OK for your targets to put.
 
-  2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
+  3. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
 
 ```java
 BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
@@ -50,8 +51,8 @@ manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
   Then here comes the result: 
   
   ![code effect](http://7xawtr.com1.z0.glb.clouddn.com/dot_and_figure_badge.png)
-    
-  3. Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
+  
+  4. Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
 
 ```java
 /**
@@ -150,8 +151,6 @@ FigureBadge badge = manager.createFigureBadge(R.id.badge_target, MyFigureStyle.c
   
   * No touching event available on the badge, coming soon.
   
-  * If you intend to put a badge into a list item or into a ScrollView, do not wrap the list or the ScrollView into BadgeRelativeLayout. Contrarily, put BadgeRelativeLayout into their View tree.
-
 ## Developed By
 
   * Cookizz - <com.cookizz@gmail.com>
