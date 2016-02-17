@@ -9,7 +9,7 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
 
   - Add [badge.jar](https://github.com/Cookizz/Android-BadgeLayout/blob/master/release/badge.jar) to your file dependencies.
 
-  - Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout. Wrap your target views () that you intend to put badges on.
+  - Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout. Wrap your target views (multi-level nested sub view also works) that you intend to put badges on.
 
   Here I take `BadgeRelativeLayout` as an example:
 
