@@ -7,9 +7,9 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
   
 ## Usage
 
-  1. Add [badge.jar](https://github.com/Cookizz/Android-BadgeLayout/blob/master/release/badge.jar) to your file dependencies.
+  - Add [badge.jar](https://github.com/Cookizz/Android-BadgeLayout/blob/master/release/badge.jar) to your file dependencies.
 
-  2. Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout. Wrap your target views that you intend to put badges on.
+  - Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout. Wrap your target views () that you intend to put badges on.
 
   Here I take `BadgeRelativeLayout` as an example:
 
@@ -33,9 +33,7 @@ BadgeLayout provides an easier way of designing, creating and controlling badges
 </com.cookizz.badge.BadgeRelativeLayout>
 ```
 
-  In no matter which view hierarchy in `BdadeRelativeLayout` will it be OK for your targets to put.
-
-  3. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
+  - In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
 
 ```java
 BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
@@ -48,11 +46,11 @@ manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
         .show();
 ```
 
-  Then here comes the result: 
+  Here comes the result: 
   
   ![code effect](http://7xawtr.com1.z0.glb.clouddn.com/dot_and_figure_badge.png)
   
-  4. Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
+  - Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
 
 ```java
 /**
