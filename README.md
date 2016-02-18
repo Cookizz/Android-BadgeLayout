@@ -11,63 +11,63 @@ dependencies {
   
 ## Usage
 
-  - If you are about to put badges on some views, first of all, wrap these views into `BadgeRelativeLayout` or `BadgeFrameLayout`. (No matter how deep these views are nested)
+  1. If you are about to put badges on some views, first of all, wrap these views into `BadgeRelativeLayout` or `BadgeFrameLayout`. (No matter how deep these views are nested)
 
-```xml
-<com.cookizz.badge.BadgeRelativeLayout
-    android:id="@+id/badge_layout"
-    ...
-    ...>
+    ```xml
+    <com.cookizz.badge.BadgeRelativeLayout
+        android:id="@+id/badge_layout"
+        ...
+        ...>
+        
+        <TextView
+            android:id="@+id/text_1"
+            android:text="@string/dot"
+            ...
+            .../>
     
-    <TextView
-        android:id="@+id/text_1"
-        android:text="@string/dot"
-        ...
-        .../>
+        <TextView
+            android:id="@+id/text_2"
+            android:text="@string/figure"
+            ...
+            .../>
+    </com.cookizz.badge.BadgeRelativeLayout>
+    ```
 
-    <TextView
-        android:id="@+id/text_2"
-        android:text="@string/figure"
-        ...
-        .../>
-</com.cookizz.badge.BadgeRelativeLayout>
-```
+  2. In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` using their default styles.
 
-  - In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` using their default styles.
-
-```java
-BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
-
-manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
-        .show();
-
-manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
-        .setFigure(45)
-        .show();
-```
+    ```java
+    BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
+    
+    manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
+            .show();
+    
+    manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
+            .setFigure(45)
+            .show();
+    ```
 
   Here comes the result: 
   
   ![code effect](http://7xawtr.com1.z0.glb.clouddn.com/dot_and_figure_badge.png)
   
-  - Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
+  3. Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
 
-```java
-/**
- * Interfaces in common
- */
-void hide();
-boolean isShown();
-void detach();
-boolean isAttached();
-BadgeStyle getStyle();
-
-/**
- * FigureBadge exclusive
- */
-void setFigure(int);
-int getFigure();
-```
+    ```java
+    /**
+     * Interfaces in common
+     */
+    void hide();
+    boolean isShown();
+    void detach();
+    boolean isAttached();
+    BadgeStyle getStyle();
+    
+    /**
+     * FigureBadge exclusive
+     */
+    void setFigure(int);
+    int getFigure();
+    ```
 
 ## Design your badge style
   Quite easy! Take `FigureBadge` as an example...
