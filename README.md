@@ -11,9 +11,7 @@ dependencies {
   
 ## Usage
 
-  - Include `com.cookizz.badge.BadgeRelativeLayout` or `com.cookizz.badge.BadgeFrameLayout` in your layout. Wrap your target views (multi-level nested sub view also works) that you intend to put badges on.
-
-  Here I take `BadgeRelativeLayout` as an example:
+  - If you are about to put badges on some views, first of all, wrap these views into `BadgeRelativeLayout` or `BadgeFrameLayout`. (No matter how deep these views are nested)
 
 ```xml
 <com.cookizz.badge.BadgeRelativeLayout
@@ -35,7 +33,7 @@ dependencies {
 </com.cookizz.badge.BadgeRelativeLayout>
 ```
 
-  - In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` from your `BadgeRelativeLayout` using their default styles.
+  - In your `onCreate()` method, create a DotBadge on `@id/text_1` and a FigureBadge on `@id/text_2` using their default styles.
 
 ```java
 BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
