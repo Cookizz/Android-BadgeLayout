@@ -79,57 +79,76 @@ public class MyFigureStyle extends FigureStyle {
 
     @Override
     public Point getReferencedScreenResolution() {
-        // Point out which screen resolution your design is based on.
+        return new Point(750, 1334); // base on iPhone 6 resolution
     }
 
     @Override
     public Point getGravity() {
-        // Tell the base class which direction your badge goes.
+        return new Point(1, -1); // right-top of target view
     }
 
     @Override
     public Point getOffset() {
-        // After settings gravity, you may set an extra offset in px the badge will go.
+        return new Point(10, -10); // extrude towards right and top by 10 px based on its position resulted from getGravity()
     }
     
     @Override
     public int getTextSize() {
-        // Point out figure text size.
+        return 24; // 24px text size in iPhone 6 resolution
     }
 
     @Override
-    public int getTextColor(Context context) {
-        // Point out figure text color.
+    public int getTextColor(Context context) { // Point out figure text color.
+        return context.getResources().getColor(R.color.white);
     }
 
     @Override
     public Typeface getTypeface(Context context) {
-        // Point out figure text typeface.
+        return null; // use system
     }
 
     @Override
-    public int getBackgroundColor(Context context) {
-        // Point out the background color of your badge.
+    public int getBackgroundColor(Context context) { // Point out the background color of your badge.
+        return context.getResources().getColor(R.color.badge_red);
     }
     
     @Override
-    public int getTerminalRadius() {
-        // Point out the terminal radius when the badge displays as a fully round rect.
+    public int getTerminalRadius() { // Point out the terminal radius when the badge displays as a fully round rect.
+        return 18;
     }
 
     @Override
-    public int getWidth(int figure) {
-        // Point out the width in px in each case of the figure changes.
+    public int getWidth(int figure) { // Point out the width in px in each case of the figure changes.
+        if(figure < 0) {
+            return 0;
+        }
+        final int divideBy10 = figure / 10;
+        if(divideBy10 == 0) {
+            return 36;
+        }
+        else if(divideBy10 < 10) {
+            return 48;
+        }
+        else {
+            return 62;
+        }
     }
 
     @Override
-    public String getText(int figure) {
-        // Map figure into specified text, such as I/II/IV/VI.
+    public String getText(int figure) { // Map figure into specified text
+        String text;
+        if(figure > 99) {
+            text = "99+";
+        }
+        else {
+            text = String.valueOf(figure);
+        }
+        return text;
     }
 
     @Override
-    public boolean isVisible(int figure) {
-        // Filter visibility of your badge in some cases of figure changes.
+    public boolean isVisible(int figure) { // Filter visibility of your badge in some cases of figure changes.
+        return figure > 0;
     }
 }
 ```
