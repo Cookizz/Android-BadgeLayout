@@ -11,7 +11,7 @@ dependencies {
   
 ## Usage
 
-  1. If you are about to put badges on some views, first of all, wrap these views into `BadgeRelativeLayout` or `BadgeFrameLayout`. (No matter how deep these views are nested)
+  1. If you are about to put badges on some views, first of all, wrap these views into `BadgeRelativeLayout` or `BadgeFrameLayout`. (No matter how deep they are being nested)
 
     ```xml
     <com.cookizz.badge.BadgeRelativeLayout
