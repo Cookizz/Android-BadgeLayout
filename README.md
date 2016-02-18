@@ -125,11 +125,9 @@ public class MyFigureStyle extends FigureStyle {
         final int divideBy10 = figure / 10;
         if (divideBy10 == 0) {
             return 36;
-        }
-        else if (divideBy10 < 10) {
+        } else if (divideBy10 < 10) {
             return 48;
-        }
-        else {
+        } else {
             return 62;
         }
     }
@@ -139,8 +137,7 @@ public class MyFigureStyle extends FigureStyle {
         String text;
         if (figure > 99) {
             text = "99+";
-        }
-        else {
+        } else {
             text = String.valueOf(figure);
         }
         return text;
