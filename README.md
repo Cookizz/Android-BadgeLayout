@@ -119,14 +119,14 @@ public class MyFigureStyle extends FigureStyle {
 
     @Override
     public int getWidth(int figure) { // Point out the width in px in each case of the figure changes.
-        if(figure < 0) {
+        if (figure < 0) {
             return 0;
         }
         final int divideBy10 = figure / 10;
-        if(divideBy10 == 0) {
+        if (divideBy10 == 0) {
             return 36;
         }
-        else if(divideBy10 < 10) {
+        else if (divideBy10 < 10) {
             return 48;
         }
         else {
@@ -137,7 +137,7 @@ public class MyFigureStyle extends FigureStyle {
     @Override
     public String getText(int figure) { // Map figure into specified text
         String text;
-        if(figure > 99) {
+        if (figure > 99) {
             text = "99+";
         }
         else {
