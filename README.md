@@ -2,12 +2,24 @@
 BadgeLayout provides an easier way of designing, creating and controlling badges within your Android apps. You pay no attention to any View issues during your development.
 
 ## Requirement
-  
-```gradle
-dependencies {
-    compile 'com.cookizz:badgelib:1.1.1'
-}
-```
+
+- Gradle
+
+    ```gradle
+    dependencies {
+        compile 'com.cookizz:badgelib:1.1.1'
+    }
+    ```
+- Maven
+
+    ```xml
+    <dependency>
+      <groupId>com.cookizz</groupId>
+      <artifactId>badgelib</artifactId>
+      <version>1.1.1</version>
+      <type>pom</type>
+    </dependency>
+    ```
   
 ## Usage
 
