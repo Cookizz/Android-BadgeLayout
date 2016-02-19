@@ -50,19 +50,18 @@ BadgeLayout provides an easy way of designing, creating and controlling badges w
     ```java
     BadgeManager manager = (BadgeManager) findViewById(R.id.badge_layout);
     
-    manager.createDotBadge(R.id.text_1, DotStyleNormal.class);
-            .show();
+    DotBadge dot = (DotBadge) manager.createDotBadge(R.id.text_1, DotStyleNormal.class).show();
     
-    manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class);
+    FigureBadge figure = (FigureBadge) (manager.createFigureBadge(R.id.text_2, FigureStyleNormal.class)
             .setFigure(45)
-            .show();
+            .show());
     ```
 
   Here comes the result: 
   
   ![code effect](http://7xawtr.com1.z0.glb.clouddn.com/dot_and_figure_badge.png)
   
-  3. Once you obtained a badge reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
+  3. Once you obtained a `BadgeMutable` reference by calling its `show()` method, the following control accesses to DotBadge/FigureBadge are now available for you.
 
     ```java
     /**
