@@ -1,7 +1,7 @@
 # Android-BadgeLayout
 BadgeLayout provides an easy way of designing, creating and controlling badges within your Android apps. You pay no attention to any View issues during your development.
 
-## Requirement
+## Dependencies
 
 - Gradle
 
